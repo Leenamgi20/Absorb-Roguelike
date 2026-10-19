@@ -1,0 +1,303 @@
+# Absorb Roguelike 언어 표(2026-10-06). 열: key<TAB>ko<TAB>en. '#' 줄은 주석, 줄바꿈은 \n.
+# 키 규칙·새 문자열 추가 방법·용어집: docs/04_구현위키/언어_설정.md. 영어 칸이 비면 한국어가 나온다.
+key	ko	en
+# ── common
+common.none	없음	None
+common.list_separator	, 	, 
+# ── menu (시작 메뉴)
+menu.solo	혼자 하기	Play Solo
+menu.coop	멀티플레이	Multiplayer
+menu.coop_download_only	멀티플레이는 다운로드판에서	Multiplayer: download version
+menu.options	옵션	Options
+menu.quit	게임 종료	Quit
+menu.section_online	인터넷	Online
+menu.create_room_public	공개방 만들기	Create Public Room
+menu.create_room_private	비공개방 만들기	Create Private Room
+menu.room_list	공개방 목록	Browse Public Rooms
+menu.room_list_title	공개방 목록	Public Rooms
+menu.room_list_searching	방을 찾는 중...	Looking for rooms...
+menu.room_list_empty	열린 공개방이 없습니다 — 새로고침하거나 직접 만들어 보세요	No open rooms — refresh or make one
+menu.room_list_count	참가할 수 있는 방 {0}개	{0} room(s) open
+menu.room_list_failed	방 목록을 불러오지 못했습니다 — 인터넷 연결을 확인하세요	Couldn't load rooms — check your internet
+menu.room_list_entry	{0}의 방  {1}/{2}	{0}'s room  {1}/{2}
+menu.room_list_join	참가	Join
+menu.room_list_refresh	새로고침	Refresh
+menu.room_code_placeholder	방 코드 6자리	6-digit code
+menu.join_room	방 코드로 참가	Join by Code
+menu.section_lan	같은 네트워크 (IP)	Same Network (IP)
+menu.start_host	호스트 시작	Start Host
+menu.ip_placeholder	참가할 호스트 IP	Host IP to join
+menu.join_ip	IP로 참가	Join by IP
+menu.back	뒤로	Back
+menu.connecting	접속 중...	Connecting...
+menu.connecting_ip	접속 중... ({0})	Connecting... ({0})
+menu.creating_room	방 만드는 중...	Creating room...
+menu.joining_room	방 {0}에 접속 중...	Joining room {0}...
+menu.cancel	취소	Cancel
+menu.room_opened_public	공개방이 열렸습니다 — 방 목록에 보입니다	Public room open — it shows in the room list
+menu.room_opened_private	비공개방이 열렸습니다 — 코드로만 들어올 수 있습니다	Private room open — join by code only
+menu.room_code_big	방 코드: {0}	Room Code: {0}
+menu.room_code_corner	방 코드 {0}	Room Code {0}
+menu.room_share_hint	친구에게 이 코드를 알려 주세요 — 친구가 들어오면 이 화면이 닫힙니다	Share this code with a friend — this screen closes when they join
+menu.copy	복사	Copy
+menu.to_game	게임으로	To Game
+menu.close_room	방 닫기	Close Room
+menu.online_connecting	온라인 연결 중...	Going online...
+menu.online_ready	온라인 준비됨	Online ready
+menu.online_failed	온라인 연결 실패: {0}	Couldn't go online: {0}
+menu.online_disabled	인터넷 모드 사용 불가: {0}	Online play unavailable: {0}
+menu.reason_no_config	온라인 설정이 비어 있습니다(EOSConfig)	online settings are empty (EOSConfig)
+menu.reason_no_eos_components	EOS 구성 요소가 씬에 없습니다	EOS components missing in scene
+menu.reason_timeout	시간 초과	timed out
+menu.reason_timeout_check	시간 초과 — 인터넷 연결을 확인하세요	timed out — check your internet
+menu.reason_code_exists	같은 코드의 방이 이미 있음 — 다시 눌러 주세요	that code is taken — try again
+menu.eos_display_name	플레이어	Player
+menu.host_ip	호스트 IP {0}	Host IP {0}
+menu.host_ip_none	호스트 IP 없음(네트워크 연결 확인) · 포트 {0}	No host IP (check network) · Port {0}
+menu.msg_host_lost_online	호스트와 연결이 끊겼습니다 — 방이 닫혔거나 인터넷 연결이 불안정합니다	Lost the Host — the room closed or the connection is shaky
+menu.msg_cannot_join_online	방에 접속할 수 없습니다 — 인터넷 연결을 확인하세요	Can't join the room — check your internet
+menu.msg_host_lost	호스트와 연결이 끊겼습니다	Lost the Host
+menu.msg_cannot_reach_host	호스트에 접속할 수 없습니다 — IP·방화벽을 확인하세요	Can't reach the Host — check the IP and firewall
+menu.msg_no_kcp	같은 PC 테스트용 전송(Kcp)을 찾을 수 없습니다	Local test transport (Kcp) not found
+menu.msg_no_eos	인터넷 전송(EOS)을 찾을 수 없습니다	Online transport (EOS) not found
+menu.msg_cleaning_up	이전 방을 정리하는 중입니다 — 잠시 뒤 다시 눌러 주세요	Tidying up the last room — try again in a moment
+menu.msg_host_failed	호스트를 시작할 수 없습니다 — 포트가 이미 쓰이는지 확인하세요	Can't start the Host — the port may be in use
+menu.msg_code_failed	방 코드를 만들지 못했습니다	Couldn't make a Room Code
+menu.msg_enter_code	방 코드 {0}자리를 입력하세요	Enter the {0}-digit Room Code
+menu.msg_cancelled	취소했습니다	Cancelled
+menu.msg_join_cancelled	접속을 취소했습니다	Join cancelled
+menu.msg_code_copied	방 코드를 복사했습니다	Room Code copied!
+menu.msg_room_closed	방을 닫았습니다	Room closed
+menu.msg_create_failed	방을 만들지 못했습니다({0})	Couldn't create the room ({0})
+menu.msg_join_not_found	없는 방 코드입니다 — 코드를 다시 확인하세요	No room with that code — double-check it
+menu.msg_join_full	방이 가득 찼습니다	The room is full
+menu.msg_join_timeout	방에 접속하지 못했습니다(시간 초과) — 인터넷 연결을 확인하세요	Couldn't join (timed out) — check your internet
+menu.msg_join_no_connection	호스트와 연결하지 못했습니다 — 인터넷 연결을 확인하세요	Couldn't connect to the Host — check your internet
+menu.msg_join_failed	방에 접속하지 못했습니다({0}) — 인터넷 연결을 확인하세요	Couldn't join ({0}) — check your internet
+# ── options (옵션 창)
+options.title	옵션	Options
+options.language	언어 / Language	언어 / Language
+options.language_ko	한국어	한국어
+options.language_en	English	English
+options.display	화면	Display
+options.display_mode	화면 모드	Mode
+options.mode_windowed	창 모드	Windowed
+options.mode_fullscreen	전체 화면	Fullscreen
+options.resolution	해상도	Resolution
+options.resolution_native	{0} × {1} (모니터)	{0} × {1} (Monitor)
+options.volume	볼륨	Volume
+options.volume_master	전체	Master
+options.volume_bgm	배경음	Music
+options.volume_sfx	효과음	Sound FX
+options.keys	키 설정 (키보드·마우스)	Controls (Keyboard & Mouse)
+options.key_move_up	이동 위	Move Up
+options.key_move_down	이동 아래	Move Down
+options.key_move_left	이동 왼쪽	Move Left
+options.key_move_right	이동 오른쪽	Move Right
+options.key_attack	공격	Attack
+options.key_guard	가드	Guard
+options.key_dash	대시	Dash
+options.key_absorb	흡수 (누르고 있기)	Absorb (hold)
+options.key_revive	부활 (누르고 있기)	Revive (hold)
+options.key_map	지도 (누르고 있기)	Map (hold)
+options.key_pause	일시정지 / 메뉴	Pause / Menu
+options.key_debug	디버그 메뉴	Debug Menu
+options.fixed	고정	Fixed
+options.change	변경	Change
+options.press_key	키를 누르세요… (ESC 취소)	Press a key… (ESC to cancel)
+options.key_none	(없음)	(none)
+options.warn_duplicate	중복 키: {0}	Same key on: {0}
+options.warn_fixed	고정 키와 겹침: {0} ({1})	Clashes with a fixed key: {0} ({1})
+options.warn_fixed_also	 — 고정 키({0})와도 겹침	 — also clashes with fixed key ({0})
+options.reset	기본값으로	Reset
+options.close	닫기	Close
+options.replay_intro	인트로 다시 보기	Replay Intro
+options.reset_hints	힌트 다시 보기	Show Hints Again
+options.hints_reset_done	힌트를 다시 보여 줍니다	Hints will show again
+options.intro_reset_done	다음 시작 때 인트로를 보여 줍니다	Intro will play on next start
+# ── pause (일시정지)
+pause.title_paused	일시정지	Paused
+pause.title_menu	메뉴	Menu
+pause.coop_note	협동 중에는 게임이 멈추지 않습니다	The game keeps going in co-op
+pause.resume	재개	Resume
+pause.options	옵션	Options
+pause.controls	조작법	Controls
+pause.restart	재시작	Restart
+pause.to_title	타이틀로	To Title
+pause.quit	게임 종료	Quit
+# ── result (런 종료 화면)
+result.victory	승리	Victory!
+result.defeat	패배	Defeat
+result.defeated_message	쓰러졌습니다.	You went down...
+result.victory_message	봉인 밖으로 빠져나왔습니다!\n최종 속성: {0}	You escaped the seal!\nFinal Element: {0}
+result.stat_time	생존 시간	Time Survived
+result.stat_floor	도달 층	Floor Reached
+result.floor_cleared	{0}층 클리어	Cleared all {0} Floors
+result.floor_reached	{0}층 / {1}층	Floor {0} / {1}
+result.restart	다시 하기	Play Again
+result.waiting_host	호스트가 다시 시작하기를 기다리는 중	Waiting for the Host to restart
+result.to_title	타이틀로	To Title
+# ── hud (왼쪽 위 정보 글자·체력)
+hud.hp	HP {0} / {1}	HP {0} / {1}
+hud.hp_shield	HP {0} / {1}  +보호막(1회 막기)	HP {0} / {1}  +Shield (blocks 1 hit)
+hud.line_floor	층 {0}	Floor {0}
+hud.line_currency	재화 {0}	Coins {0}
+hud.line_element	속성 {0}	Element {0}
+hud.line_trait	패시브 {0}	Trait {0}
+hud.line_wool	양털 {0}/{1}	Wool {0}/{1}
+hud.line_dash	대시 {0}	Dash {0}
+hud.line_absorb	흡수 {0}	Absorb {0}
+hud.line_heal	회복 {0}	Heal {0}
+hud.line_mouth	입 {0}	Mouth {0}
+hud.floor_animals	 (동물: {0})	 (Animals: {0})
+hud.trait_value	{0} ({1})	{0} ({1})
+hud.trait_none	없음 (맨몸 — 보스에게 무기 1)	None (bare-handed — 1 weapon dmg to Boss)
+hud.seconds	{0:0.0}초	{0:0.0}s
+hud.ready	준비	Ready
+hud.horse_dashes_left	2단 남음 {0}	{0} double-dash left
+hud.absorb_used	이 방에서 사용함	Used in this room
+hud.absorb_ready	가능	Ready
+hud.heal_ready	준비(적중 시 회복)	Ready (heals on hit)
+hud.mouth_debris	파편 있음 (좌클릭으로 뱉기)	Debris (left-click to spit)
+hud.mouth_empty	비어 있음	Empty
+hud.no_skill	스킬 없음	No skill
+# ── party (왼쪽 위 파티 목록)
+party.player	플레이어	Player
+party.player_n	플레이어 {0}	Player {0}
+party.you	{0} (나)	{0} (You)
+party.down	쓰러짐	Down
+# ── 쓰러짐·부활(2026-10-07)
+downed.spectating	관전 중 — 동료가 [{0}] 키를 3초 누르면 부활합니다	Spectating — an ally can revive you by holding [{0}] for 3s
+revive.prompt	[{0}] 길게 눌러 부활	Hold [{0}] to revive
+revive.need_health	체력이 2 이상이어야 부활시킬 수 있습니다	You need at least 2 HP to revive
+party.hp	HP {0}/{1}	HP {0}/{1}
+party.hp_shield	HP {0}/{1} [막기]	HP {0}/{1} [Shield]
+# ── boss (보스 선택 창·페이즈 문구)
+boss.keep	유지	Keep
+boss.choice_description	보스를 처치했습니다!\n현재 속성: {0}{1}\n흡수할 속성을 선택하세요. (선택하지 않으면 유지)	Boss defeated!\nCurrent Element: {0}{1}\nPick an Element to Absorb. (Skip to keep yours)
+boss.choice_floor_note	{0} = 이 층 속성	{0} = this Floor's Element
+boss.phase2	격노!	Enraged!
+boss.phase3	대지가 울린다!	The Earth trembles!
+boss.phase4	폭주!	Berserk!
+# ── bosssit (보스 상황 특성: bosssit.<enum>.name/desc/favored)
+bosssit.None.name	없음	None
+bosssit.Armored.name	갑옷	Armored
+bosssit.Armored.desc	소의 돌진이 갑옷을 깬다	Ox charges crack the armor
+bosssit.Armored.favored	소	Ox
+bosssit.FlurrySwing.name	연타 휘두르기	Flurry Swing
+bosssit.FlurrySwing.desc	돼지는 막을 때마다 반격한다	Pig strikes back on every Guard
+bosssit.FlurrySwing.favored	돼지	Pig
+bosssit.Regenerating.name	재생	Regenerating
+bosssit.Regenerating.desc	화상이 재생을 멈춘다	Burn stops the regen
+bosssit.Regenerating.favored	화염 속성	Fire Element
+# ── map (Tab 지도·순간이동 안내)
+map.tab_hint	Tab: 지도	Tab: Map
+map.empty	지도 정보 없음	No map yet
+map.click_to_move	클릭해 이동	Click to warp
+map.boss	보스	Boss
+map.info	층 {0}\n층 속성: {1}\n보스 특성: {2}\n이 층 동물: {3}	Floor {0}\nFloor Element: {1}\nBoss Trait: {2}\nAnimals here: {3}
+map.floor_value	{0} / {1}	{0} / {1}
+map.boss_trait_value	{0} — {1}	{0} — {1}
+map.deny_combat	전투 중에는 이동할 수 없습니다	Can't warp mid-battle
+map.deny_dead	사망 중에는 이동할 수 없습니다	Can't warp while down
+map.deny_no_landing	이동할 수 없는 위치입니다	Can't warp there
+map.deny_cooldown	잠시 후 다시 이동할 수 있습니다	Warp again in a moment
+map.deny_not_cleared	클리어한 방으로만 이동할 수 있습니다	You can only warp to cleared rooms
+# ── notice (서버가 보내는 짧은 안내)
+notice.pulled_into_combat	전투 방으로 이동했습니다	Pulled into the battle room!
+# ── floor (층 전환 연출·출구)
+floor.title	{0}층	Floor {0}
+floor.title_final	{0}층 · 마지막 층	Floor {0} · Final Floor
+floor.subtitle_element	{0}의 층	Floor of {0}
+floor.exit_waiting	대기 {0}/{1}	Waiting {0}/{1}
+exit.revive_first	쓰러진 동료를 먼저 부활시키세요	Revive your downed ally first
+# ── banner (층 시작 보스 특성 배너)
+banner.boss_situation	층 {0} — 이번 층 보스: {1} — {2}	Floor {0} — Boss: {1} — {2}
+# ── element (속성: element.<enum> — Electric은 영어로 Lightning)
+element.None	없음	None
+element.Fire	화염	Fire
+element.Ice	냉기	Ice
+element.Electric	전기	Lightning
+element.Poison	독	Poison
+element.Earth	대지	Earth
+# ── trait (동물 특성: trait.<id>.name/desc/short — id 기본값 = 흡수 스킬 enum 이름)
+trait.OxKnockback.name	소	Ox
+trait.OxKnockback.desc	돌진 공격 + 강한 넉백	Charge attack + big knockback
+trait.OxKnockback.short	소	Ox
+trait.TigerCombo.name	호랑이	Tiger
+trait.TigerCombo.desc	좁고 긴 3연속 할퀴기	Long, narrow 3-hit claw combo
+trait.TigerCombo.short	호	Tg
+trait.SnakeBind.name	뱀	Snake
+trait.SnakeBind.desc	주변 원형 공격 + 둔화	Circle attack around you + slow
+trait.SnakeBind.short	뱀	Sn
+trait.HorseDoubleDash.name	말	Horse
+trait.HorseDoubleDash.desc	2단 대시(적 통과 + 대미지)	Double Dash (through foes + damage)
+trait.HorseDoubleDash.short	말	Hr
+trait.PigCounter.name	돼지	Pig
+trait.PigCounter.desc	가드 반격	Guard counter
+trait.PigCounter.short	돼	Pg
+trait.RoosterEgg.name	닭	Rooster
+trait.RoosterEgg.desc	대시마다 알 낳기(아군 회복)	Lay an egg every Dash (heals allies)
+trait.RoosterEgg.short	닭	Rs
+trait.RabbitEarWhip.name	토끼	Rabbit
+trait.RabbitEarWhip.desc	귀 채찍(끝부분 강타)	Ear whip (tip hits hard)
+trait.RabbitEarWhip.short	토	Rb
+trait.RatGnaw.name	쥐	Rat
+trait.RatGnaw.desc	갉기(명중마다 취약)	Gnaw (each hit adds Vulnerable)
+trait.RatGnaw.short	쥐	Rt
+trait.DragonBreath.name	용	Dragon
+trait.DragonBreath.desc	제자리 속사 브레스(누르는 동안 계속, 이동 중 불가)	Rapid breath in place (hold to keep going, can't move)
+trait.DragonBreath.short	용	Dr
+trait.SheepWool.name	양	Sheep
+trait.SheepWool.desc	양털(막으면 털, 3개면 폭발+보호막)	Wool (Guard grows wool, 3 = burst + Shield)
+trait.SheepWool.short	양	Sh
+trait.MonkeyBanana.name	원숭이	Monkey
+trait.MonkeyBanana.desc	바나나 던지기(원거리)	Banana toss (ranged)
+trait.MonkeyBanana.short	원	Mk
+trait.DogCompanion.name	개	Dog
+trait.DogCompanion.desc	충견(동료가 최근 때린 적을 물음)	Loyal pup (bites foes your allies just hit)
+trait.DogCompanion.short	개	Dg
+# ── status (몬스터 머리 위 상태이상 글자)
+status.armor	갑옷 {0}	Armor {0}
+status.regen	재생	Regen
+status.regen_stopped	재생 정지	Regen stopped
+status.vulnerable	취약 {0}	Vulnerable {0}
+status.burn	화상 {0}	Burn {0}
+status.poison	독 {0}	Poison {0}
+status.shock	감전 {0}/{1}	Shock {0}/{1}
+status.chill	냉기 {0}	Chill {0}
+status.paralyze	마비	Paralyzed
+status.stagger	경직	Staggered
+# ── popup (머리 위 글자 팝업 — 서버가 Loc.Pack으로 보내고 받는 쪽 언어로 표시)
+popup.armor_break	갑옷 파괴!	Armor broken!
+# ── intro (첫 플레이 인트로 컷 자막, 2026-10-16 — 컷 번호 = docs/01_기획/스토리보드.md)
+intro.cut05	경비병에게 물려받은 낡은 대검을 안고, 슬라임은 마을의 오래된 우물을 살짝 들여다보았어요.\n우물 깊은 곳에서 푸른 빛이 반짝였어요.	Hugging the old sword the guard gave it, the slime peeked into the village's ancient well.\nDeep inside, a blue light twinkled.
+intro.cut06	그 순간, 우물이 빙글빙글 소용돌이치며 슬라임을 쏙 빨아들였어요!	All of a sudden, the well swirled round and round and slurped the slime right in!
+intro.cut07	눈을 떠 보니 낯선 돌방… 이곳은 우물 아래 봉인된 장소.\n들어올 때마다 방의 모습이 달라져요.	It woke up in a strange stone room… a sealed place beneath the well.\nThe rooms change every time you come in.
+intro.cut09	길을 막는 12지신 수호 동물들. 꼭 끌어안아 흡수하면 다치게 하지 않고\n그 힘을 탈로 빌려 쓸 수 있어요.	The Zodiac guardians block the way. Give one a big hug to absorb it —\nno harm done — and borrow its power as a mask.
+intro.cut12	그런데 친구도 소용돌이를 타고 따라 들어왔어요!\n둘이 함께라면 더 깊이 내려갈 수 있어요.	And look — a friend tumbled down the swirl too!\nTogether, the two of you can go even deeper.
+intro.skip	건너뛰기	Skip
+intro.next_hint	클릭·Space·Enter: 다음	Click / Space / Enter: Next
+# ── hint (첫 플레이 힌트 — {0} = 지금 키, 옵션 리바인딩 반영)
+hint.move	{0} 이동	{0} to move
+hint.attack	{0} 공격	{0} to attack
+hint.guard	{0} 가드	{0} to guard
+hint.dash	{0} 대시	{0} to dash
+hint.absorb	{0} 길게 눌러 흡수	Hold {0} to absorb
+hint.revive	쓰러진 동료 가까이에서 {0} 길게 눌러 부활	Hold {0} near a downed friend to revive
+hint.debris	보스 파편! 가까이에서 {0}를 눌러 머금기	Boss debris! Press {0} nearby to suck it in
+hint.spit	{0}로 파편을 뱉어 보스에게 맞히기 — 무기보다 훨씬 아파요	Press {0} to spit the debris at the boss — far stronger than your weapon
+hint.boss_absorb	보스를 쓰러뜨렸어요! 시체에 다가가 {0} 길게 눌러 흡수 — 속성 무기를 얻어요	Boss down! Hold {0} on its body to absorb it — you'll get an elemental weapon
+# ── controls (일시정지 '조작법' 표)
+controls.title	조작법	Controls
+controls.row_move	이동	Move
+controls.row_attack	공격	Attack
+controls.row_guard	가드	Guard
+controls.row_dash	대시	Dash
+controls.row_absorb	흡수 (누르고 있기)	Absorb (hold)
+controls.row_revive	부활 (누르고 있기)	Revive (hold)
+controls.row_map	지도 (누르고 있기)	Map (hold)
+controls.row_map_teleport	지도에서 방 클릭: 그 방으로 순간이동 (클리어한 방만, 전투 중 불가)	Click a room on the map: teleport there (cleared rooms only, not in combat)
+controls.key_map_click	Tab + 클릭	Tab + Click
+controls.row_menu	일시정지 / 메뉴	Pause / Menu
+controls.ok	확인	OK

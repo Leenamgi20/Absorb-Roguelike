@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사운드 작업표</title>
+<style>
+:root { --bg:#f7f6f2; --panel:#fff; --ink:#1f2328; --muted:#5d6670; --line:#dcd9d0; --accent:#2f6f5e; --code:#eeece6; --done:#e3efe9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#15181b; --panel:#1d2125; --ink:#e6e3dc; --muted:#9aa3ad; --line:#30363d; --accent:#6cc2a6; --code:#262b31; --done:#1f3330; } }
+:root[data-theme="dark"] { --bg:#15181b; --panel:#1d2125; --ink:#e6e3dc; --muted:#9aa3ad; --line:#30363d; --accent:#6cc2a6; --code:#262b31; --done:#1f3330; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.6 "Pretendard","Malgun Gothic",system-ui,sans-serif; }
+main { max-width:1100px; margin:0 auto; padding:24px 16px 80px; }
+h1 { margin:0 0 6px; font-size:24px; } h2 { margin:32px 0 10px; font-size:19px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+.muted { color:var(--muted); } code { background:var(--code); padding:1px 6px; border-radius:4px; font-family:Consolas,monospace; font-size:13px; }
+nav { position:sticky; top:0; background:var(--bg); padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; line-height:2; z-index:2; }
+nav a { color:var(--accent); text-decoration:none; }
+.progress { font-weight:600; margin-left:8px; }
+.item { background:var(--panel); border:1px solid var(--line); border-radius:10px; margin:12px 0; padding:12px 14px; }
+.item.done { background:var(--done); }
+.head { display:flex; align-items:center; gap:12px; flex-wrap:wrap; } .head h3 { margin:0; font-size:16px; flex:1; min-width:0; }
+.code { font-weight:700; font-size:18px; color:var(--accent); } .meta { color:var(--muted); font-size:13px; }
+.check { display:flex; align-items:center; gap:6px; cursor:pointer; } .check input { width:18px; height:18px; accent-color:var(--accent); }
+.body { display:grid; grid-template-columns:220px minmax(0,1fr); gap:14px; margin-top:10px; }
+.body img { width:220px; height:auto; image-rendering:pixelated; border-radius:6px; border:1px solid var(--line); background:#000; }
+.file { font-size:13.5px; margin-bottom:4px; }
+.prompt { border-top:1px dashed var(--line); padding-top:8px; margin-top:8px; } .prompt p { margin:4px 0 6px; }
+button { font:inherit; font-size:12.5px; padding:3px 10px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:var(--bg); cursor:pointer; margin-right:6px; }
+button.alt { background:transparent; color:var(--accent); } button.copied { opacity:.6; }
+.done-tag { font-size:12.5px; color:var(--accent); font-weight:600; } .todo-tag { font-size:12.5px; color:var(--muted); }
+.hide-done .item.done { display:none; }
+@media (max-width:640px) { .body { grid-template-columns:minmax(0,1fr); } .body img { width:100%; } }
+</style></head><body><main>
+<h1>사운드 작업표</h1>
+<p class="muted">번호는 <code>docs/03_아트/사운드_제작_목록.md</code> 표, <code>ref_numbered/</code> 이미지, 모아 보기와 같다. 순서: ① 이미지 + "프롬프트 복사"로 VARCO에서 생성 → ② 같은 파일 이름으로 <code>Art_Source/sound/</code>에 저장 → ③ 레벨 디자인 시트 사운드 탭의 '사운드 가져오기'. 효과음 프롬프트 복사에는 밝은 분위기 꼬리 문장이 함께 붙는다. 체크는 이 브라우저에만 저장된다. '넣음'·'합성본' 표시는 작업표를 만든 시점 기준(다시 실행하면 갱신).</p>
+<nav><label><input type="checkbox" id="hideDone"> 완료 숨기기</label><span class="progress" id="progress"></span><br><a href="#B1">B1</a> · <a href="#B2">B2</a> · <a href="#B3">B3</a> · <a href="#B4">B4</a> · <a href="#J1">J1</a> · <a href="#J2">J2</a> · <a href="#S01">S01</a> · <a href="#S02">S02</a> · <a href="#S03">S03</a> · <a href="#S04">S04</a> · <a href="#S05">S05</a> · <a href="#S06">S06</a> · <a href="#S07">S07</a> · <a href="#S08">S08</a> · <a href="#S09">S09</a> · <a href="#S10">S10</a> · <a href="#S11">S11</a> · <a href="#S12">S12</a> · <a href="#S13">S13</a> · <a href="#S14">S14</a> · <a href="#S15">S15</a> · <a href="#S16">S16</a> · <a href="#S17">S17</a> · <a href="#S18">S18</a> · <a href="#S19">S19</a> · <a href="#S20">S20</a> · <a href="#S21">S21</a> · <a href="#S22">S22</a> · <a href="#S23">S23</a> · <a href="#S24">S24</a> · <a href="#S25">S25</a> · <a href="#S26">S26</a> · <a href="#S27">S27</a> · <a href="#S28">S28</a> · <a href="#S29">S29</a> · <a href="#S30">S30</a> · <a href="#S31">S31</a> · <a href="#S32">S32</a> · <a href="#S33">S33</a> · <a href="#S34">S34</a> · <a href="#S35">S35</a> · <a href="#S36">S36</a> · <a href="#S37">S37</a> · <a href="#S38">S38</a> · <a href="#S39">S39</a> · <a href="#S40">S40</a></nav>
+<h2>배경음악·징글</h2>
+<section class="item" id="B1" data-code="B1">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="B1"> <span class="code">B1</span></label>
+    <h3>타이틀·방 대기 화면</h3>
+    <span class="meta">40~60초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/bgm_title.png" target="_blank"><img src="ref/bgm_title.png" alt="bgm_title 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>bgm_title.wav</code> <button class="alt" data-copy="bgm_title">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/bgm_title.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 고요한 신비</b><p>A calm and mysterious title theme for a pixel art roguelike, where soft gayageum plucks and gentle chiptune pads slowly drift over a quiet sealed spirit world, at a slow tempo around 80 BPM, made as a seamless loop without any fade out.</p><button data-copy="A calm and mysterious title theme for a pixel art roguelike, where soft gayageum plucks and gentle chiptune pads slowly drift over a quiet sealed spirit world, at a slow tempo around 80 BPM, made as a seamless loop without any fade out.">프롬프트 복사</button></div><div class="prompt"><b>② 따뜻한 동화풍</b><p>A warm, gentle fairy tale melody played on a daegeum flute with soft 16-bit chiptune harmony, giving the feeling of a small slime about to begin a big journey, at around 90 BPM as a seamless loop without fade out.</p><button data-copy="A warm, gentle fairy tale melody played on a daegeum flute with soft 16-bit chiptune harmony, giving the feeling of a small slime about to begin a big journey, at around 90 BPM as a seamless loop without fade out.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="B2" data-code="B2">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="B2"> <span class="code">B2</span></label>
+    <h3>모든 층 공통(탐색·일반 전투)</h3>
+    <span class="meta">60초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/bgm_dungeon.png" target="_blank"><img src="ref/bgm_dungeon.png" alt="bgm_dungeon 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>bgm_dungeon.wav</code> <button class="alt" data-copy="bgm_dungeon">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/bgm_dungeon.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 신비로운 탐험 **(추천)**</b><p>A mysterious and adventurous dungeon exploration theme in 16-bit chiptune, where a haegeum melody and soft janggu drums create a steady sense of curiosity with a little tension, at a medium tempo around 105 BPM, made as a seamless loop without fade out.</p><button data-copy="A mysterious and adventurous dungeon exploration theme in 16-bit chiptune, where a haegeum melody and soft janggu drums create a steady sense of curiosity with a little tension, at a medium tempo around 105 BPM, made as a seamless loop without fade out.">프롬프트 복사</button></div><div class="prompt"><b>② 묵직한 긴장</b><p>A dark, steady dungeon theme with a low pulsing chiptune bass, distant gong hits and a slow gayageum melody, keeping the player alert while exploring ancient sealed ruins, at around 95 BPM as a seamless loop without fade out.</p><button data-copy="A dark, steady dungeon theme with a low pulsing chiptune bass, distant gong hits and a slow gayageum melody, keeping the player alert while exploring ancient sealed ruins, at around 95 BPM as a seamless loop without fade out.">프롬프트 복사</button></div><div class="prompt"><b>③ 가벼운 모험(밝음)</b><p>A light and adventurous chiptune dungeon theme with a playful daegeum flute melody over bouncing bass and light janggu drums, cheerful but not too fast, at around 110 BPM as a seamless loop without fade out.</p><button data-copy="A light and adventurous chiptune dungeon theme with a playful daegeum flute melody over bouncing bass and light janggu drums, cheerful but not too fast, at around 110 BPM as a seamless loop without fade out.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="B3" data-code="B3">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="B3"> <span class="code">B3</span></label>
+    <h3>보스 방(문이 잠기면 전환)</h3>
+    <span class="meta">60초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/bgm_boss.png" target="_blank"><img src="ref/bgm_boss.png" alt="bgm_boss 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>bgm_boss.wav</code> <button class="alt" data-copy="bgm_boss">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/bgm_boss.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 거대한 정령과의 결전</b><p>An intense boss battle theme where heavy buk and taiko drums drive aggressive chiptune arpeggios and a sharp haegeum lead, with gong hits announcing a giant zodiac animal spirit, at a fast tempo around 150 BPM as a seamless loop without fade out.</p><button data-copy="An intense boss battle theme where heavy buk and taiko drums drive aggressive chiptune arpeggios and a sharp haegeum lead, with gong hits announcing a giant zodiac animal spirit, at a fast tempo around 150 BPM as a seamless loop without fade out.">프롬프트 복사</button></div><div class="prompt"><b>② 리듬 중심</b><p>A fast and rhythmic boss fight track built on pounding traditional drums and a driving chiptune bass line, with short urgent flute phrases that make the battle feel dangerous, at around 140 BPM as a seamless loop without fade out.</p><button data-copy="A fast and rhythmic boss fight track built on pounding traditional drums and a driving chiptune bass line, with short urgent flute phrases that make the battle feel dangerous, at around 140 BPM as a seamless loop without fade out.">프롬프트 복사</button></div><div class="prompt"><b>③ 웅장한 위압감</b><p>A heavy and menacing boss theme with slow powerful drum hits, deep brass-like chiptune chords and a wailing haegeum, making the player feel small against a huge ancient spirit, at around 120 BPM as a seamless loop without fade out.</p><button data-copy="A heavy and menacing boss theme with slow powerful drum hits, deep brass-like chiptune chords and a wailing haegeum, making the player feel small against a huge ancient spirit, at around 120 BPM as a seamless loop without fade out.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="B4" data-code="B4">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="B4"> <span class="code">B4</span></label>
+    <h3>마지막 층 보스(선택 — 없으면 B3 사용)</h3>
+    <span class="meta">60초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/bgm_boss_final.png" target="_blank"><img src="ref/bgm_boss_final.png" alt="bgm_boss_final 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>bgm_boss_final.wav</code> <button class="alt" data-copy="bgm_boss_final">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/bgm_boss_final.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 최종전</b><p>A grand and desperate final boss theme where choir-like pads and fast chiptune leads rise over thunderous drums and gongs as an ancient sealed spirit fully awakens, at around 160 BPM as a seamless loop without fade out.</p><button data-copy="A grand and desperate final boss theme where choir-like pads and fast chiptune leads rise over thunderous drums and gongs as an ancient sealed spirit fully awakens, at around 160 BPM as a seamless loop without fade out.">프롬프트 복사</button></div><div class="prompt"><b>② 비장함</b><p>An emotional final battle theme that starts with a solemn gayageum line and builds into powerful drums and soaring chiptune melodies, feeling like the last fight to escape the seal, at around 150 BPM as a seamless loop without fade out.</p><button data-copy="An emotional final battle theme that starts with a solemn gayageum line and builds into powerful drums and soaring chiptune melodies, feeling like the last fight to escape the seal, at around 150 BPM as a seamless loop without fade out.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="J1" data-code="J1">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="J1"> <span class="code">J1</span></label>
+    <h3>승리 결과 화면</h3>
+    <span class="meta">2~4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/jingle_victory.png" target="_blank"><img src="ref/jingle_victory.png" alt="jingle_victory 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>jingle_victory.wav</code> <button class="alt" data-copy="jingle_victory">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/jingle_victory.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 팡파르</b><p>A short triumphant victory fanfare in bright chiptune that ends with a sparkling gayageum flourish, lasting about three seconds.</p><button data-copy="A short triumphant victory fanfare in bright chiptune that ends with a sparkling gayageum flourish, lasting about three seconds.">프롬프트 복사</button></div><div class="prompt"><b>② 해방감</b><p>A short, uplifting jingle that feels like breaking free from a seal, with rising flute notes and a bright final chord, lasting about three seconds.</p><button data-copy="A short, uplifting jingle that feels like breaking free from a seal, with rising flute notes and a bright final chord, lasting about three seconds.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="J2" data-code="J2">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="J2"> <span class="code">J2</span></label>
+    <h3>패배 결과 화면</h3>
+    <span class="meta">2~4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/jingle_defeat.png" target="_blank"><img src="ref/jingle_defeat.png" alt="jingle_defeat 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>jingle_defeat.wav</code> <button class="alt" data-copy="jingle_defeat">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/jingle_defeat.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><b>① 쓸쓸함</b><p>A short sad defeat jingle with a slow descending chiptune melody and a soft haegeum note at the end, lasting about three seconds.</p><button data-copy="A short sad defeat jingle with a slow descending chiptune melody and a soft haegeum note at the end, lasting about three seconds.">프롬프트 복사</button></div><div class="prompt"><b>② 담담함</b><p>A short, quiet game over jingle with a few gentle falling notes that fade softly, lasting about three seconds.</p><button data-copy="A short, quiet game over jingle with a few gentle falling notes that fade softly, lasting about three seconds.">프롬프트 복사</button></div>
+    </div>
+  </div>
+</section><h2>효과음</h2>
+<section class="item" id="S01" data-code="S01">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S01"> <span class="code">S01</span></label>
+    <h3>대검 휘두르기</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_sword_swing.png" target="_blank"><img src="ref/sfx_sword_swing.png" alt="sfx_sword_swing 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_sword_swing.wav</code> <button class="alt" data-copy="sfx_sword_swing">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_sword_swing.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A quick and snappy cartoon sword swing with a clean, light whoosh.</p><button data-copy="A quick and snappy cartoon sword swing with a clean, light whoosh. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A quick and snappy cartoon sword swing with a clean, light whoosh.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S02" data-code="S02">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S02"> <span class="code">S02</span></label>
+    <h3>적에게 명중</h3>
+    <span class="meta">0.2초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_hit.png" target="_blank"><img src="ref/sfx_hit.png" alt="sfx_hit 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_hit.wav</code> <button class="alt" data-copy="sfx_hit">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_hit.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, crisp and bouncy cartoon hit sound with a little pop, like hitting an enemy in a cheerful action game.</p><button data-copy="A short, crisp and bouncy cartoon hit sound with a little pop, like hitting an enemy in a cheerful action game. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, crisp and bouncy cartoon hit sound with a little pop, like hitting an enemy in a cheerful action game.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S03" data-code="S03">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S03"> <span class="code">S03</span></label>
+    <h3>강타 명중(귀 채찍 끝 등)</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_hit_strong.png" target="_blank"><img src="ref/sfx_hit_strong.png" alt="sfx_hit_strong 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_hit_strong.wav</code> <button class="alt" data-copy="sfx_hit_strong">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_hit_strong.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A strong but cheerful critical hit with a punchy pow and a bright twinkle on top.</p><button data-copy="A strong but cheerful critical hit with a punchy pow and a bright twinkle on top. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A strong but cheerful critical hit with a punchy pow and a bright twinkle on top.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S04" data-code="S04">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S04"> <span class="code">S04</span></label>
+    <h3>가드로 공격 막기</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_guard.png" target="_blank"><img src="ref/sfx_guard.png" alt="sfx_guard 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_guard.wav</code> <button class="alt" data-copy="sfx_guard">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_guard.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A bright metallic ting as a cute hero blocks an attack, short and clear.</p><button data-copy="A bright metallic ting as a cute hero blocks an attack, short and clear. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A bright metallic ting as a cute hero blocks an attack, short and clear.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S05" data-code="S05">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S05"> <span class="code">S05</span></label>
+    <h3>대시</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_dash.png" target="_blank"><img src="ref/sfx_dash.png" alt="sfx_dash 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_dash.wav</code> <button class="alt" data-copy="sfx_dash">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_dash.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A fast and airy cartoon zip sound as a little hero dashes forward.</p><button data-copy="A fast and airy cartoon zip sound as a little hero dashes forward. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A fast and airy cartoon zip sound as a little hero dashes forward.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S06" data-code="S06">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S06"> <span class="code">S06</span></label>
+    <h3>플레이어 피격</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_player_hurt.png" target="_blank"><img src="ref/sfx_player_hurt.png" alt="sfx_player_hurt 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_player_hurt.wav</code> <button class="alt" data-copy="sfx_player_hurt">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_player_hurt.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, cute cartoon ouch sound with a quick boing, like a small mascot character getting bumped.</p><button data-copy="A short, cute cartoon ouch sound with a quick boing, like a small mascot character getting bumped. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, cute cartoon ouch sound with a quick boing, like a small mascot character getting bumped.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S07" data-code="S07">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S07"> <span class="code">S07</span></label>
+    <h3>멀티에서 쓰러짐</h3>
+    <span class="meta">0.8초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_player_down.png" target="_blank"><img src="ref/sfx_player_down.png" alt="sfx_player_down 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_player_down.wav</code> <button class="alt" data-copy="sfx_player_down">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_player_down.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cute cartoon knockout sound with a falling slide whistle and a soft little thump.</p><button data-copy="A cute cartoon knockout sound with a falling slide whistle and a soft little thump. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cute cartoon knockout sound with a falling slide whistle and a soft little thump.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S08" data-code="S08">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S08"> <span class="code">S08</span></label>
+    <h3>부활 진행 중(반복)</h3>
+    <span class="meta">1~2초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_revive_loop.png" target="_blank"><img src="ref/sfx_revive_loop.png" alt="sfx_revive_loop 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_revive_loop.wav</code> <button class="alt" data-copy="sfx_revive_loop">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_revive_loop.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A gentle twinkling magic shimmer that keeps sparkling softly, made as a seamless loop.</p><button data-copy="A gentle twinkling magic shimmer that keeps sparkling softly, made as a seamless loop. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A gentle twinkling magic shimmer that keeps sparkling softly, made as a seamless loop.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S09" data-code="S09">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S09"> <span class="code">S09</span></label>
+    <h3>부활 완료</h3>
+    <span class="meta">0.8초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_revive_done.png" target="_blank"><img src="ref/sfx_revive_done.png" alt="sfx_revive_done 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_revive_done.wav</code> <button class="alt" data-copy="sfx_revive_done">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_revive_done.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A happy rising magical chime with sparkles, like a character popping back up full of energy.</p><button data-copy="A happy rising magical chime with sparkles, like a character popping back up full of energy. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A happy rising magical chime with sparkles, like a character popping back up full of energy.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S10" data-code="S10">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S10"> <span class="code">S10</span></label>
+    <h3>흡수 홀드 중 빨아들이기(반복)</h3>
+    <span class="meta">1초 반복</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_absorb_hold.png" target="_blank"><img src="ref/sfx_absorb_hold.png" alt="sfx_absorb_hold 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_absorb_hold.wav</code> <button class="alt" data-copy="sfx_absorb_hold">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_absorb_hold.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A funny cartoon inhale like a cute character sucking in air with a whirling wind, light and comical, made as a seamless loop.</p><button data-copy="A funny cartoon inhale like a cute character sucking in air with a whirling wind, light and comical, made as a seamless loop. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A funny cartoon inhale like a cute character sucking in air with a whirling wind, light and comical, made as a seamless loop.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S11" data-code="S11">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S11"> <span class="code">S11</span></label>
+    <h3>흡수 성공 &quot;꿀꺽&quot;</h3>
+    <span class="meta">0.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_absorb_success.png" target="_blank"><img src="ref/sfx_absorb_success.png" alt="sfx_absorb_success 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_absorb_success.wav</code> <button class="alt" data-copy="sfx_absorb_success">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_absorb_success.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, funny cartoon gulp with a bouncy boing, like a cute character swallowing something in one bite.</p><button data-copy="A short, funny cartoon gulp with a bouncy boing, like a cute character swallowing something in one bite. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, funny cartoon gulp with a bouncy boing, like a cute character swallowing something in one bite.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S12" data-code="S12">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S12"> <span class="code">S12</span></label>
+    <h3>탈 쓰기 &quot;퐁&quot;</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_trait_equip.png" target="_blank"><img src="ref/sfx_trait_equip.png" alt="sfx_trait_equip 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_trait_equip.wav</code> <button class="alt" data-copy="sfx_trait_equip">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_trait_equip.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cute and bright pop with a sparkly puff, like a magical costume change in a cartoon.</p><button data-copy="A cute and bright pop with a sparkly puff, like a magical costume change in a cartoon. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cute and bright pop with a sparkly puff, like a magical costume change in a cartoon.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S13" data-code="S13">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S13"> <span class="code">S13</span></label>
+    <h3>특성을 잃음(맞아서 벗겨짐)</h3>
+    <span class="meta">0.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_trait_lost.png" target="_blank"><img src="ref/sfx_trait_lost.png" alt="sfx_trait_lost 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_trait_lost.wav</code> <button class="alt" data-copy="sfx_trait_lost">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_trait_lost.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A playful descending pew-pew-pew tone with a light puff, like a power-up being lost in a retro game.</p><button data-copy="A playful descending pew-pew-pew tone with a light puff, like a power-up being lost in a retro game. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A playful descending pew-pew-pew tone with a light puff, like a power-up being lost in a retro game.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S14" data-code="S14">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S14"> <span class="code">S14</span></label>
+    <h3>파편 머금기</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_debris_grab.png" target="_blank"><img src="ref/sfx_debris_grab.png" alt="sfx_debris_grab 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_debris_grab.wav</code> <button class="alt" data-copy="sfx_debris_grab">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_debris_grab.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A quick and funny cartoon slurp, short and light.</p><button data-copy="A quick and funny cartoon slurp, short and light. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A quick and funny cartoon slurp, short and light.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S15" data-code="S15">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S15"> <span class="code">S15</span></label>
+    <h3>파편 뱉기</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_debris_spit.png" target="_blank"><img src="ref/sfx_debris_spit.png" alt="sfx_debris_spit 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_debris_spit.wav</code> <button class="alt" data-copy="sfx_debris_spit">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_debris_spit.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A quick, comical cartoon spit with a bright pew as an object shoots out.</p><button data-copy="A quick, comical cartoon spit with a bright pew as an object shoots out. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A quick, comical cartoon spit with a bright pew as an object shoots out.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S16" data-code="S16">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S16"> <span class="code">S16</span></label>
+    <h3>화염</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_elem_fire.png" target="_blank"><img src="ref/sfx_elem_fire.png" alt="sfx_elem_fire 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_elem_fire.wav</code> <button class="alt" data-copy="sfx_elem_fire">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_elem_fire.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, bright cartoon flame puff with a crackly fwoosh.</p><button data-copy="A short, bright cartoon flame puff with a crackly fwoosh. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, bright cartoon flame puff with a crackly fwoosh.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S17" data-code="S17">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S17"> <span class="code">S17</span></label>
+    <h3>냉기</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_elem_ice.png" target="_blank"><img src="ref/sfx_elem_ice.png" alt="sfx_elem_ice 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_elem_ice.wav</code> <button class="alt" data-copy="sfx_elem_ice">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_elem_ice.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A crisp and sparkly cartoon freeze sound with a tinkling ice chime.</p><button data-copy="A crisp and sparkly cartoon freeze sound with a tinkling ice chime. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A crisp and sparkly cartoon freeze sound with a tinkling ice chime.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S18" data-code="S18">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S18"> <span class="code">S18</span></label>
+    <h3>전기</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_elem_electric.png" target="_blank"><img src="ref/sfx_elem_electric.png" alt="sfx_elem_electric 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_elem_electric.wav</code> <button class="alt" data-copy="sfx_elem_electric">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_elem_electric.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, zippy cartoon electric zap with a buzzy sparkle.</p><button data-copy="A short, zippy cartoon electric zap with a buzzy sparkle. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, zippy cartoon electric zap with a buzzy sparkle.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S19" data-code="S19">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S19"> <span class="code">S19</span></label>
+    <h3>독</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_elem_poison.png" target="_blank"><img src="ref/sfx_elem_poison.png" alt="sfx_elem_poison 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_elem_poison.wav</code> <button class="alt" data-copy="sfx_elem_poison">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_elem_poison.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A funny cartoon bubbling blub-blub sound, light and silly.</p><button data-copy="A funny cartoon bubbling blub-blub sound, light and silly. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A funny cartoon bubbling blub-blub sound, light and silly.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S20" data-code="S20">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S20"> <span class="code">S20</span></label>
+    <h3>대지</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_elem_earth.png" target="_blank"><img src="ref/sfx_elem_earth.png" alt="sfx_elem_earth 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_elem_earth.wav</code> <button class="alt" data-copy="sfx_elem_earth">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_elem_earth.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, chunky cartoon rock bonk with a little rumble.</p><button data-copy="A short, chunky cartoon rock bonk with a little rumble. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, chunky cartoon rock bonk with a little rumble.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S21" data-code="S21">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S21"> <span class="code">S21</span></label>
+    <h3>잡몹 피격(공통)</h3>
+    <span class="meta">0.2초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_monster_hurt.png" target="_blank"><img src="ref/sfx_monster_hurt.png" alt="sfx_monster_hurt 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_monster_hurt.wav</code> <button class="alt" data-copy="sfx_monster_hurt">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_monster_hurt.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A tiny, cute cartoon squeak when a little critter gets bonked.</p><button data-copy="A tiny, cute cartoon squeak when a little critter gets bonked. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A tiny, cute cartoon squeak when a little critter gets bonked.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S22" data-code="S22">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S22"> <span class="code">S22</span></label>
+    <h3>잡몹 사망(공통)</h3>
+    <span class="meta">0.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_monster_die.png" target="_blank"><img src="ref/sfx_monster_die.png" alt="sfx_monster_die 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_monster_die.wav</code> <button class="alt" data-copy="sfx_monster_die">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_monster_die.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cute cartoon poof as a small enemy disappears in a puff of smoke.</p><button data-copy="A cute cartoon poof as a small enemy disappears in a puff of smoke. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cute cartoon poof as a small enemy disappears in a puff of smoke.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S23" data-code="S23">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S23"> <span class="code">S23</span></label>
+    <h3>공격 예고(공통)</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_monster_warn.png" target="_blank"><img src="ref/sfx_monster_warn.png" alt="sfx_monster_warn 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_monster_warn.wav</code> <button class="alt" data-copy="sfx_monster_warn">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_monster_warn.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A short, bright alert blip like an exclamation mark popping up in a cartoon game.</p><button data-copy="A short, bright alert blip like an exclamation mark popping up in a cartoon game. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, bright alert blip like an exclamation mark popping up in a cartoon game.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S24" data-code="S24">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S24"> <span class="code">S24</span></label>
+    <h3>개 짖기(돌진 예고)</h3>
+    <span class="meta">0.4초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_dog_bark.png" target="_blank"><img src="ref/sfx_dog_bark.png" alt="sfx_dog_bark 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_dog_bark.wav</code> <button class="alt" data-copy="sfx_dog_bark">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_dog_bark.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A single cute and high-pitched puppy bark.</p><button data-copy="A single cute and high-pitched puppy bark. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A single cute and high-pitched puppy bark.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S25" data-code="S25">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S25"> <span class="code">S25</span></label>
+    <h3>용 브레스</h3>
+    <span class="meta">1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_dragon_breath.png" target="_blank"><img src="ref/sfx_dragon_breath.png" alt="sfx_dragon_breath 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_dragon_breath.wav</code> <button class="alt" data-copy="sfx_dragon_breath">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_dragon_breath.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cartoon baby dragon blowing a fun burst of fire with a bright fwoosh.</p><button data-copy="A cartoon baby dragon blowing a fun burst of fire with a bright fwoosh. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cartoon baby dragon blowing a fun burst of fire with a bright fwoosh.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S26" data-code="S26">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S26"> <span class="code">S26</span></label>
+    <h3>돼지 방패에 막힘</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_shield_block.png" target="_blank"><img src="ref/sfx_shield_block.png" alt="sfx_shield_block 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_shield_block.wav</code> <button class="alt" data-copy="sfx_shield_block">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_shield_block.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A funny cartoon bonk as an attack bounces off a wooden shield with a boing.</p><button data-copy="A funny cartoon bonk as an attack bounces off a wooden shield with a boing. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A funny cartoon bonk as an attack bounces off a wooden shield with a boing.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S27" data-code="S27">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S27"> <span class="code">S27</span></label>
+    <h3>보스 등장·포효</h3>
+    <span class="meta">1.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_roar.png" target="_blank"><img src="ref/sfx_boss_roar.png" alt="sfx_boss_roar 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_roar.wav</code> <button class="alt" data-copy="sfx_boss_roar">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_roar.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A big but cartoonish monster roar, powerful and dramatic like a boss in a colorful adventure game, not scary or gritty.</p><button data-copy="A big but cartoonish monster roar, powerful and dramatic like a boss in a colorful adventure game, not scary or gritty. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A big but cartoonish monster roar, powerful and dramatic like a boss in a colorful adventure game, not scary or gritty.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S28" data-code="S28">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S28"> <span class="code">S28</span></label>
+    <h3>보스 돌진</h3>
+    <span class="meta">1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_charge.png" target="_blank"><img src="ref/sfx_boss_charge.png" alt="sfx_boss_charge 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_charge.wav</code> <button class="alt" data-copy="sfx_boss_charge">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_charge.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cartoon stampede rush with bouncy heavy footsteps, energetic and fun.</p><button data-copy="A cartoon stampede rush with bouncy heavy footsteps, energetic and fun. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cartoon stampede rush with bouncy heavy footsteps, energetic and fun.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S29" data-code="S29">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S29"> <span class="code">S29</span></label>
+    <h3>벽에 부딪혀 경직</h3>
+    <span class="meta">0.8초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_wall_hit.png" target="_blank"><img src="ref/sfx_boss_wall_hit.png" alt="sfx_boss_wall_hit 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_wall_hit.wav</code> <button class="alt" data-copy="sfx_boss_wall_hit">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_wall_hit.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A big comical crash as a giant creature bonks into a wall, with a dizzy cartoon wobble.</p><button data-copy="A big comical crash as a giant creature bonks into a wall, with a dizzy cartoon wobble. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A big comical crash as a giant creature bonks into a wall, with a dizzy cartoon wobble.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S30" data-code="S30">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S30"> <span class="code">S30</span></label>
+    <h3>지진 강타</h3>
+    <span class="meta">1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_slam.png" target="_blank"><img src="ref/sfx_boss_slam.png" alt="sfx_boss_slam 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_slam.wav</code> <button class="alt" data-copy="sfx_boss_slam">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_slam.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A big punchy cartoon ground pound with a bouncy boom and a short rumble.</p><button data-copy="A big punchy cartoon ground pound with a bouncy boom and a short rumble. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A big punchy cartoon ground pound with a bouncy boom and a short rumble.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S31" data-code="S31">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S31"> <span class="code">S31</span></label>
+    <h3>페이즈 전환(폭주)</h3>
+    <span class="meta">1.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_phase.png" target="_blank"><img src="ref/sfx_boss_phase.png" alt="sfx_boss_phase 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_phase.wav</code> <button class="alt" data-copy="sfx_boss_phase">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_phase.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A dramatic cartoon power-up rising whoosh with a bright gong hit, exciting rather than creepy.</p><button data-copy="A dramatic cartoon power-up rising whoosh with a bright gong hit, exciting rather than creepy. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A dramatic cartoon power-up rising whoosh with a bright gong hit, exciting rather than creepy.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S32" data-code="S32">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S32"> <span class="code">S32</span></label>
+    <h3>보스 쓰러짐</h3>
+    <span class="meta">2초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_boss_down.png" target="_blank"><img src="ref/sfx_boss_down.png" alt="sfx_boss_down 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_boss_down.wav</code> <button class="alt" data-copy="sfx_boss_down">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_boss_down.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A big cartoon boss defeat with a long descending whistle, a bouncy thud and a sparkle at the end.</p><button data-copy="A big cartoon boss defeat with a long descending whistle, a bouncy thud and a sparkle at the end. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A big cartoon boss defeat with a long descending whistle, a bouncy thud and a sparkle at the end.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S33" data-code="S33">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S33"> <span class="code">S33</span></label>
+    <h3>전투 방 문 잠김</h3>
+    <span class="meta">0.8초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_door_lock.png" target="_blank"><img src="ref/sfx_door_lock.png" alt="sfx_door_lock 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_door_lock.wav</code> <button class="alt" data-copy="sfx_door_lock">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_door_lock.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A quick cartoon gate slam with a bright magical lock click.</p><button data-copy="A quick cartoon gate slam with a bright magical lock click. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A quick cartoon gate slam with a bright magical lock click.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S34" data-code="S34">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S34"> <span class="code">S34</span></label>
+    <h3>방 클리어(문 열림)</h3>
+    <span class="meta">1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_room_clear.png" target="_blank"><img src="ref/sfx_room_clear.png" alt="sfx_room_clear 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_room_clear.wav</code> <button class="alt" data-copy="sfx_room_clear">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_room_clear.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A cheerful little victory chime as a door opens, short and happy.</p><button data-copy="A cheerful little victory chime as a door opens, short and happy. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A cheerful little victory chime as a door opens, short and happy.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S35" data-code="S35">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S35"> <span class="code">S35</span></label>
+    <h3>포탈 열림</h3>
+    <span class="meta">1.5초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_portal_open.png" target="_blank"><img src="ref/sfx_portal_open.png" alt="sfx_portal_open 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_portal_open.wav</code> <button class="alt" data-copy="sfx_portal_open">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_portal_open.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A bright swirling magic portal opening with a rising sparkly whoosh.</p><button data-copy="A bright swirling magic portal opening with a rising sparkly whoosh. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A bright swirling magic portal opening with a rising sparkly whoosh.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S36" data-code="S36">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S36"> <span class="code">S36</span></label>
+    <h3>다음 층 이동</h3>
+    <span class="meta">1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_floor_enter.png" target="_blank"><img src="ref/sfx_floor_enter.png" alt="sfx_floor_enter 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_floor_enter.wav</code> <button class="alt" data-copy="sfx_floor_enter">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_floor_enter.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A fun cartoon warp sound with a quick spinning whoosh.</p><button data-copy="A fun cartoon warp sound with a quick spinning whoosh. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A fun cartoon warp sound with a quick spinning whoosh.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S37" data-code="S37">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S37"> <span class="code">S37</span></label>
+    <h3>버튼에 마우스 올림</h3>
+    <span class="meta">0.1초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_ui_hover.png" target="_blank"><img src="ref/sfx_ui_hover.png" alt="sfx_ui_hover 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_ui_hover.wav</code> <button class="alt" data-copy="sfx_ui_hover">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_ui_hover.png</code></div>
+      <div><span class="done-tag">넣음: sfx_ui_hover.wav</span></div>
+      <div class="prompt"><p>A tiny, soft and cute menu blip.</p><button data-copy="A tiny, soft and cute menu blip. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A tiny, soft and cute menu blip.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S38" data-code="S38">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S38"> <span class="code">S38</span></label>
+    <h3>버튼 누름</h3>
+    <span class="meta">0.15초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_ui_click.png" target="_blank"><img src="ref/sfx_ui_click.png" alt="sfx_ui_click 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_ui_click.wav</code> <button class="alt" data-copy="sfx_ui_click">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_ui_click.png</code></div>
+      <div><span class="done-tag">넣음: sfx_ui_click.wav</span></div>
+      <div class="prompt"><p>A short, bright and bubbly menu click pop.</p><button data-copy="A short, bright and bubbly menu click pop. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A short, bright and bubbly menu click pop.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S39" data-code="S39">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S39"> <span class="code">S39</span></label>
+    <h3>창 열기·닫기</h3>
+    <span class="meta">0.3초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_ui_open.png" target="_blank"><img src="ref/sfx_ui_open.png" alt="sfx_ui_open 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_ui_open.wav</code> <button class="alt" data-copy="sfx_ui_open">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_ui_open.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A light and quick menu swoosh with a soft pop.</p><button data-copy="A light and quick menu swoosh with a soft pop. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A light and quick menu swoosh with a soft pop.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+<section class="item" id="S40" data-code="S40">
+  <div class="head">
+    <label class="check"><input type="checkbox" data-done="S40"> <span class="code">S40</span></label>
+    <h3>보스 속성 선택 확정</h3>
+    <span class="meta">0.8초</span>
+  </div>
+  <div class="body">
+    <a href="ref/sfx_ui_select.png" target="_blank"><img src="ref/sfx_ui_select.png" alt="sfx_ui_select 참조 이미지" loading="lazy"></a>
+    <div class="info">
+      <div class="file">넣을 파일 이름 <code>sfx_ui_select.wav</code> <button class="alt" data-copy="sfx_ui_select">이름 복사</button></div>
+      <div class="file">참조 이미지 <code>Art_Source/sound/ref/sfx_ui_select.png</code></div>
+      <div><span class="todo-tag">합성본 사용 중</span></div>
+      <div class="prompt"><p>A happy magical confirm chime with bright sparkles.</p><button data-copy="A happy magical confirm chime with bright sparkles. It should sound bright, light and playful like a cute casual cartoon game, not dark or realistic.">프롬프트 복사</button><button class="alt" data-copy="A happy magical confirm chime with bright sparkles.">꼬리 문장 없이</button></div>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+(function () {
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var state = {}; try { state = JSON.parse(store('soundWorksheet.done') || '{}') || {}; } catch (e) {}
+  var boxes = document.querySelectorAll('input[data-done]');
+  function refresh() {
+    var n = 0;
+    boxes.forEach(function (b) { b.closest('.item').classList.toggle('done', b.checked); if (b.checked) n++; });
+    document.getElementById('progress').textContent = '완료 ' + n + ' / ' + boxes.length;
+  }
+  boxes.forEach(function (b) { b.checked = !!state[b.dataset.done]; b.addEventListener('change', function () { state[b.dataset.done] = b.checked; store('soundWorksheet.done', JSON.stringify(state)); refresh(); }); });
+  document.getElementById('hideDone').addEventListener('change', function (e) { document.body.classList.toggle('hide-done', e.target.checked); });
+  document.querySelectorAll('button[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.dataset.copy, label = btn.textContent;
+      function done() { btn.textContent = '복사됨'; btn.classList.add('copied'); setTimeout(function () { btn.textContent = label; btn.classList.remove('copied'); }, 1200); }
+      if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, function () { fallback(); }); } else { fallback(); }
+      function fallback() { var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) {} t.remove(); }
+    });
+  });
+  refresh();
+})();
+</script>
+</body></html>

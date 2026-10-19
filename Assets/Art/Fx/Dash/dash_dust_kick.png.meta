@@ -1,0 +1,415 @@
+fileFormatVersion: 2
+guid: f6a35d24375ace64aa2df47a08b39c4c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7309198755923815824
+    second: dash_dust_kick_0
+  - first:
+      213: -2139059879662482654
+    second: dash_dust_kick_1
+  - first:
+      213: -4562127733189798108
+    second: dash_dust_kick_2
+  - first:
+      213: 2696340793879096739
+    second: dash_dust_kick_3
+  - first:
+      213: 151664320466207962
+    second: dash_dust_kick_4
+  - first:
+      213: 3513057765776619869
+    second: dash_dust_kick_5
+  - first:
+      213: 4308948419619662277
+    second: dash_dust_kick_6
+  - first:
+      213: 8754357340559710949
+    second: dash_dust_kick_7
+  - first:
+      213: -7380751169744395070
+    second: dash_dust_kick_8
+  - first:
+      213: 4291433806287257516
+    second: dash_dust_kick_9
+  - first:
+      213: 5192268049598223525
+    second: dash_dust_kick_10
+  - first:
+      213: 665551172308317344
+    second: dash_dust_kick_11
+  - first:
+      213: -8211244559363057490
+    second: dash_dust_kick_12
+  - first:
+      213: 5871842025007690736
+    second: dash_dust_kick_13
+  - first:
+      213: -5588497730116504766
+    second: dash_dust_kick_14
+  - first:
+      213: 1894975415544843627
+    second: dash_dust_kick_15
+  - first:
+      213: 1187109857569795107
+    second: dash_kick_0
+  - first:
+      213: -1284553396622722425
+    second: dash_kick_1
+  - first:
+      213: -3845460671679031456
+    second: dash_kick_2
+  - first:
+      213: 1057561500289223619
+    second: dash_kick_3
+  - first:
+      213: -1138210080409382976
+    second: dash_kick_4
+  - first:
+      213: -7427734870538047217
+    second: dash_kick_5
+  - first:
+      213: -227394595352218413
+    second: dash_kick_6
+  - first:
+      213: 1340529989757836317
+    second: dash_kick_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dash_kick_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32cefc93026797010800000000000000
+      internalID: 1187109857569795107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78af74bdd795c2ee0800000000000000
+      internalID: -1284553396622722425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06716daa4ed22aac0800000000000000
+      internalID: -3845460671679031456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb4ed0d4963dae00800000000000000
+      internalID: 1057561500289223619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf0e6d56f34430f0800000000000000
+      internalID: -1138210080409382976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f013cc33d726be890800000000000000
+      internalID: -7427734870538047217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d4ff2002d128dcf0800000000000000
+      internalID: -227394595352218413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_kick_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c164a5ce48a9210800000000000000
+      internalID: 1340529989757836317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dash_dust_kick_0: 7309198755923815824
+      dash_dust_kick_1: -2139059879662482654
+      dash_dust_kick_10: 5192268049598223525
+      dash_dust_kick_11: 665551172308317344
+      dash_dust_kick_12: -8211244559363057490
+      dash_dust_kick_13: 5871842025007690736
+      dash_dust_kick_14: -5588497730116504766
+      dash_dust_kick_15: 1894975415544843627
+      dash_dust_kick_2: -4562127733189798108
+      dash_dust_kick_3: 2696340793879096739
+      dash_dust_kick_4: 151664320466207962
+      dash_dust_kick_5: 3513057765776619869
+      dash_dust_kick_6: 4308948419619662277
+      dash_dust_kick_7: 8754357340559710949
+      dash_dust_kick_8: -7380751169744395070
+      dash_dust_kick_9: 4291433806287257516
+      dash_kick_0: 1187109857569795107
+      dash_kick_1: -1284553396622722425
+      dash_kick_2: -3845460671679031456
+      dash_kick_3: 1057561500289223619
+      dash_kick_4: -1138210080409382976
+      dash_kick_5: -7427734870538047217
+      dash_kick_6: -227394595352218413
+      dash_kick_7: 1340529989757836317
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

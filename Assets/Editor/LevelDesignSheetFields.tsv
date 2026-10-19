@@ -1,0 +1,306 @@
+# 레벨 디자인 시트 이름·설명 사전(2026-10-14). 열: key<TAB>ko_name<TAB>en_name<TAB>ko_desc<TAB>en_desc. '#' 줄은 주석.
+# key = 타입이름.필드이름(중첩 타입은 바깥타입.안쪽타입.필드), 여러 타입에 같은 뜻이면 *.필드이름. 조회 순서: 타입 → 부모 타입들 → *. 규칙·추가 방법: docs/04_구현위키/레벨_디자인_시트.md
+key	ko_name	en_name	ko_desc	en_desc
+# ── 잡몹 공통 (MonsterStatsConfig — Assets/Data/Monsters/<동물>.asset, 12종)
+MonsterStatsConfig.maxHealth	체력	Health	스폰 때 최대 체력. 정예면 정예 체력 배율, 그 뒤 층·인원 체력 배율이 곱해진다. 올리면 오래 버틴다.	Max health at spawn. Elite health ×, then floor and party health × are applied on top. Higher = lasts longer.
+MonsterStatsConfig.detectRange	발견 거리 (칸)	Detect range (tiles)	처음 플레이어를 알아채는 거리의 기준값 — 실제 거리 = 이 값 × 발견 거리 배율. 올리면 멀리서도 먼저 다가온다.	Base distance for first noticing a player — actual = this × detect range multiplier. Higher = approaches from farther away.
+MonsterStatsConfig.aggroRange	추적 거리 (칸)	Chase range (tiles)	한 번 발견했거나 맞은 뒤 계속 쫓아오는 거리. 올리면 멀리 도망쳐도 놓치지 않는다.	Distance kept chasing after spotting or being hit once. Higher = harder to lose.
+MonsterStatsConfig.detectRangeScale	발견 거리 배율 (×)	Detect range multiplier (×)	발견 거리에 곱하는 배율(처음 발견할 때만). 올리면 모든 발견 거리가 함께 늘어난다.	Multiplier on detect range (first detection only). Higher = all detect ranges grow together.
+MonsterStatsConfig.attackRange	공격 시작 거리 (칸)	Attack start range (tiles)	플레이어가 이 거리 안에 들어오면 멈추고 기본 공격 예고를 시작한다. 돌진·브레스·급강하 등 고유 공격은 '동물별 패턴' 탭의 시작 거리를 쓴다.	Stops and starts the basic attack telegraph when a player is within this distance. Charge, breath, dive etc. use their own start range in the Animal patterns tab.
+MonsterStatsConfig.moveSpeed	이동속도 (칸/초)	Move speed (tiles/s)	추격 이동 속도. 실제 = 이 값 × 난이도 탭의 몬스터 이동속도 배율(둔화 중이면 더 느림).	Chase speed. Actual = this × Monster move speed multiplier in the Difficulty tab (slower while slowed).
+MonsterStatsConfig.attackCooldown	공격 쿨 (초)	Attack cooldown (s)	공격 후 다음 공격까지 기다리는 시간. 실제 = 이 값 × 난이도 탭의 몬스터 공격 쿨 배율. 올리면 공격이 드물어진다.	Wait between attacks. Actual = this × Monster attack cooldown multiplier in the Difficulty tab. Higher = attacks less often.
+MonsterStatsConfig.attackDamage	공격력	Attack damage	한 번 맞힐 때 플레이어가 받는 대미지. 정예 공격 배율과 층 대미지 배율이 곱해지고, 쥐 강한 물기·토끼 끝부분 등 고유 배율도 이 값 기준이다.	Damage per hit to the player. Elite attack × and floor damage × apply; Rat burst bite, Rabbit tip etc. also scale from this.
+MonsterStatsConfig.windupDuration	예고 시간 (초)	Telegraph time (s)	공격 범위를 보여 준 뒤 판정까지의 시간. 실제 = 이 값 × 난이도 탭의 몬스터 예고 시간 배율. 올리면 피하기 쉬워진다.	Time from showing the attack area to the hit. Actual = this × Monster telegraph time multiplier in the Difficulty tab. Higher = easier to dodge.
+MonsterStatsConfig.recoveryDuration	후딜 (초)	Recovery time (s)	공격 후 멈춰 있는 시간(달라붙기 완화 + 반격 틈). 올리면 플레이어가 때릴 틈이 길어진다.	Time standing after an attack (less sticking + a counter window). Higher = longer opening for the player.
+MonsterStatsConfig.attackAreaLength	공격 범위 길이 (칸)	Attack area length (tiles)	몸에서 앞으로 뻗는 직사각형 예고·판정의 길이. 올리면 멀리까지 닿는다.	Length of the forward rectangle (telegraph and hit area). Higher = reaches farther.
+MonsterStatsConfig.attackAreaWidth	공격 범위 폭 (칸)	Attack area width (tiles)	직사각형 예고·판정의 폭. 올리면 옆으로 피하기 어려워진다.	Width of the attack rectangle. Higher = harder to sidestep.
+MonsterStatsConfig.knockbackDistance	피격 밀림 거리 (칸)	Knockback taken (tiles)	플레이어에게 맞았을 때 밀려나는 거리. 올리면 거리를 벌리기 쉬워진다.	How far the monster is pushed when the player hits it. Higher = easier to make space.
+MonsterStatsConfig.knockbackDuration	피격 밀림 시간 (초)	Knockback taken time (s)	피격 밀림이 걸리는 시간(0이면 밀리지 않음). 내리면 같은 거리를 더 빠르게 밀려난다.	Time the knockback takes (0 = no knockback). Lower = same distance, faster push.
+MonsterStatsConfig.recoveryRetreatSpeedMultiplier	후딜 후퇴 속도 배율 (×)	Recovery retreat speed (×)	후딜 동안 뒤로 물러나는 속도(이동속도 대비). 올리면 공격 후 더 빨리 떨어진다.	Backing-off speed during recovery (relative to move speed). Higher = backs away faster after attacking.
+MonsterStatsConfig.onHitSlowMultiplier	명중 둔화 배율 (×)	On-hit slow (×)	명중 시 플레이어 이동속도 배율(0.6 = 40% 느려짐). 0이면 둔화 없음. 내릴수록 더 느려진다.	Player move speed multiplier on hit (0.6 = 40% slower). 0 = no slow. Lower = stronger slow.
+MonsterStatsConfig.onHitSlowDuration	명중 둔화 시간 (초)	On-hit slow time (s)	명중 둔화가 유지되는 시간. 0이면 둔화 없음.	How long the on-hit slow lasts. 0 = no slow.
+MonsterStatsConfig.onHitKnockbackDistance	명중 넉백 거리 (칸)	On-hit knockback (tiles)	명중 시 플레이어를 밀어내는 거리. 0이면 넉백 없음.	How far a hit pushes the player. 0 = no knockback.
+MonsterStatsConfig.onHitKnockbackTime	명중 넉백 시간 (초)	On-hit knockback time (s)	명중 넉백이 걸리는 시간. 내리면 같은 거리를 더 빠르게 밀려난다.	Time the on-hit knockback takes. Lower = same distance, faster push.
+# ── 동물별 패턴 — 제자리 브레스(용)
+BreathMonsterConfig.breathTriggerRange	브레스 시작 거리 (칸)	Breath start range (tiles)	플레이어가 이 거리 안이면 멈춘다(멈춘 뒤 멈춤 후 대기가 지나야 예고 시작). 용.	Stops when a player is within this distance (telegraph starts after the settle time). Dragon.
+BreathMonsterConfig.settleDuration	멈춤 후 대기 (초)	Settle time (s)	멈춘 뒤 브레스 예고를 시작하기까지 서 있는 시간. 올리면 공격 시작이 늦어진다. 용.	Time standing still before the breath telegraph starts. Higher = later attack. Dragon.
+BreathMonsterConfig.breathRadius	브레스 반경 (칸)	Breath radius (tiles)	부채꼴 브레스 예고·판정 반경. 올리면 멀리까지 닿는다. 용.	Radius of the breath cone (telegraph and hit). Higher = reaches farther. Dragon.
+BreathMonsterConfig.breathAngle	브레스 각도 (도)	Breath angle (deg)	부채꼴 전체 각도. 올리면 옆으로 피하기 어려워진다. 용.	Full cone angle. Higher = harder to sidestep. Dragon.
+BreathMonsterConfig.breathWindupDuration	브레스 예고 시간 (초)	Breath telegraph time (s)	브레스 예고 시간(공통 예고 시간 대신 씀, 난이도 예고 배율은 곱해짐). 올리면 피하기 쉬워진다. 용.	Breath telegraph time (used instead of the common one; Difficulty telegraph × still applies). Higher = easier to dodge. Dragon.
+# ── 동물별 패턴 — 돌진(소·말·개)
+ChargeMonsterConfig.chargeTriggerRange	돌진 시작 거리 (칸)	Charge start range (tiles)	플레이어가 이 거리 안이면 멈춰서 돌진 예고를 시작한다. 소·말·개.	Stops and starts the charge telegraph when a player is within this distance. Ox, Horse, Dog.
+ChargeMonsterConfig.chargeSpeed	돌진 속도 (칸/초)	Charge speed (tiles/s)	돌진 이동 속도. 올리면 돌진이 빨라져 피할 시간이 줄어든다. 소·말·개.	Charge movement speed. Higher = less time to react. Ox, Horse, Dog.
+ChargeMonsterConfig.chargeDistance	돌진 거리 (칸)	Charge distance (tiles)	돌진 한 번의 최대 거리 = 예고 직선 길이. 소·말·개.	Max distance of one charge = telegraph line length. Ox, Horse, Dog.
+ChargeMonsterConfig.chargeWidth	돌진 폭 (칸)	Charge width (tiles)	돌진 판정·예고 폭. 올리면 옆으로 피하기 어려워진다. 소·말·개.	Charge hit and telegraph width. Higher = harder to sidestep. Ox, Horse, Dog.
+ChargeMonsterConfig.wallStunDuration	벽 충돌 기절 (초)	Wall stun (s)	벽에 부딪혔을 때 멈춰 있는 시간. 올리면 벽으로 유도한 뒤 때릴 틈이 길어진다. 소·말·개.	Stun after hitting a wall. Higher = longer opening after baiting into a wall. Ox, Horse, Dog.
+ChargeMonsterConfig.noWallPause	벽 없을 때 정지 (초)	No-wall pause (s)	벽 없이 거리를 다 갔을 때 멈춰 있는 시간. 소·말·개.	Pause after running the full distance without hitting a wall. Ox, Horse, Dog.
+ChargeMonsterConfig.chargeCount	연속 돌진 횟수 (회)	Charge count	한 번 공격에 이어서 하는 돌진 수(1 = 한 번). 소·말·개.	Charges per attack in a row (1 = single). Ox, Horse, Dog.
+ChargeMonsterConfig.reaimBetweenCharges	돌진 사이 재조준	Re-aim between charges	켜면 두 번째 돌진부터 가장 가까운 플레이어 쪽으로 다시 조준한다. 소·말·개.	On = from the 2nd charge, re-aims at the nearest player. Ox, Horse, Dog.
+ChargeMonsterConfig.reaimWindupDuration	재조준 예고 시간 (초)	Re-aim telegraph time (s)	두 번째 돌진부터의 짧은 재예고 시간. 올리면 연속 돌진을 피하기 쉬워진다. 소·말·개.	Short re-telegraph from the 2nd charge. Higher = easier to dodge follow-up charges. Ox, Horse, Dog.
+ChargeMonsterConfig.retreatAfterCharge	돌진 후 후퇴	Retreat after charge	켜면 마지막 돌진이 끝난 뒤(맞혔든 아니든) 돌진 반대 방향으로 짧게 물러난다. 개(짖고 달려들기).	On = after the last charge (hit or miss), backs off opposite the charge. Dog (bark-and-lunge).
+ChargeMonsterConfig.retreatDistance	후퇴 거리 (칸)	Retreat distance (tiles)	돌진 후 후퇴가 켜져 있을 때 물러나는 거리. 개.	Back-off distance when Retreat after charge is on. Dog.
+ChargeMonsterConfig.retreatDuration	후퇴 시간 (초)	Retreat time (s)	후퇴 거리를 물러나는 데 걸리는 시간. 내리면 더 빠르게 물러난다. 개.	Time to cover the retreat distance. Lower = faster back-off. Dog.
+# ── 동물별 패턴 — 연속 공격(호랑이)
+ComboMonsterConfig.hitCount	연속 공격 타수 (회)	Combo hits	한 번 공격에 이어지는 타 수. 호랑이.	Hits in one attack sequence. Tiger.
+ComboMonsterConfig.comboWindupDuration	타별 예고 시간 (초)	Per-hit telegraph time (s)	각 타의 예고 시간(첫 타 포함). 올리면 타마다 피하기 쉬워진다. 호랑이.	Telegraph time of each hit (first included). Higher = each hit is easier to dodge. Tiger.
+ComboMonsterConfig.comboGap	타 사이 정지 (초)	Gap between hits (s)	타와 타 사이 정지 시간(그 뒤 다음 예고). 타 간격(이 값 + 예고)이 플레이어 피격 무적 0.5초보다 짧으면 중간 타가 무적에 막힌다. 호랑이.	Pause between hits (then the next telegraph). If gap + telegraph is under the player's 0.5 s hit invulnerability, middle hits are absorbed. Tiger.
+ComboMonsterConfig.lastHitKnockbackDistance	마지막 타 넉백 (칸)	Last-hit knockback (tiles)	마지막 타 명중 시 플레이어를 밀어내는 거리. 0이면 없음. 호랑이.	Pushes the player on the last hit. 0 = none. Tiger.
+# ── 동물별 패턴 — 급강하(닭)
+DiveMonsterConfig.diveTriggerRange	급강하 시작 거리 (칸)	Dive start range (tiles)	플레이어가 이 거리 안이면 멈춰서 급강하 예고를 시작한다. 닭.	Stops and starts the dive telegraph when a player is within this distance. Rooster.
+DiveMonsterConfig.landingRadius	착지 판정 반경 (칸)	Landing radius (tiles)	착지 지점 원형 예고·판정 반경. 올리면 피하기 어려워진다. 닭.	Radius of the landing circle (telegraph and hit). Higher = harder to dodge. Rooster.
+DiveMonsterConfig.diveWindupDuration	급강하 예고 시간 (초)	Dive telegraph time (s)	급강하 예고 시간(공통 예고 시간 대신 씀). 올리면 피하기 쉬워진다. 닭.	Dive telegraph time (used instead of the common one). Higher = easier to dodge. Rooster.
+DiveMonsterConfig.diveDuration	급강하 비행 시간 (초)	Dive flight time (s)	예고가 끝난 뒤 착지점까지 날아가는 시간. 닭.	Flight time from telegraph end to the landing point. Rooster.
+DiveMonsterConfig.landPause	착지 후 정지 (초)	Landing pause (s)	착지 후 멈춰 있는 시간(후딜 대신). 올리면 때릴 틈이 길어진다. 닭.	Pause after landing (instead of recovery). Higher = longer opening. Rooster.
+DiveMonsterConfig.wallMargin	벽 여유 거리 (칸)	Wall margin (tiles)	벽 앞에서 착지점을 잘라낼 때 남기는 거리(몸 반경 정도). 닭.	Gap kept from a wall when the landing point is clipped (about body radius). Rooster.
+# ── 동물별 패턴 — 갉아먹기(쥐)
+GnawMonsterConfig.maxStacks	강한 물기까지 자국 수 (개)	Bite marks to burst	이 수만큼 자국이 차는 물기가 강한 물기가 된다. 내리면 강한 물기가 자주 나온다. 쥐.	The bite that fills this many marks becomes a burst bite. Lower = more frequent bursts. Rat.
+GnawMonsterConfig.burstMultiplier	강한 물기 대미지 배율 (×)	Burst bite damage (×)	자국이 가득 차는 물기의 대미지 = 공격력 × 이 값. 쥐.	Burst bite damage = attack damage × this. Rat.
+GnawMonsterConfig.resetDistance	자국 초기화 거리 (칸)	Mark reset distance (tiles)	대상과 이 거리 이상 벌어지면 자국이 0이 된다. 내리면 거리를 벌려 끊기 쉬워진다. 쥐.	Marks reset when the target gets this far away. Lower = easier to break by spacing. Rat.
+GnawMonsterConfig.resetTime	자국 초기화 시간 (초)	Mark reset time (s)	마지막 물기 후 이 시간이 지나면 자국이 0이 된다. 쥐.	Marks reset this long after the last bite. Rat.
+# ── 동물별 패턴 — 긴 직선 공격(토끼)
+LongReachMonsterConfig.reachLength	직선 공격 길이 (칸)	Reach length (tiles)	긴 직선 공격의 예고·판정 길이이자 공격 시작 거리. 토끼.	Length of the long line attack (telegraph and hit) and its start range. Rabbit.
+LongReachMonsterConfig.reachWidth	직선 공격 폭 (칸)	Reach width (tiles)	긴 직선 공격의 폭. 토끼.	Width of the long line attack. Rabbit.
+LongReachMonsterConfig.tipStart	끝부분 시작 거리 (칸)	Tip start (tiles)	이 앞쪽 거리부터가 끝부분(가중 대미지). 올리면 끝부분 구간이 짧아진다. 토끼.	From this forward distance on is the tip (extra damage). Higher = shorter tip zone. Rabbit.
+LongReachMonsterConfig.tipDamageMultiplier	끝부분 대미지 배율 (×)	Tip damage (×)	끝부분에 맞으면 대미지 = 공격력 × 이 값. 토끼.	Tip hit damage = attack damage × this. Rabbit.
+LongReachMonsterConfig.hopDistance	후퇴 깡총 거리 (칸)	Retreat hop distance (tiles)	공격 후 후딜 대신 뒤로 깡총 물러나는 거리. 토끼.	Distance hopped back after attacking (instead of recovery). Rabbit.
+LongReachMonsterConfig.hopDuration	후퇴 깡총 시간 (초)	Retreat hop time (s)	후퇴 깡총에 걸리는 시간(끝난 뒤부터 공격 쿨). 토끼.	Time of the retreat hop (attack cooldown starts after it). Rabbit.
+# ── 동물별 패턴 — 원거리(원숭이)
+RangedMonsterConfig.keepDistance	유지 거리 (칸)	Keep distance (tiles)	플레이어가 이보다 가까우면 뒤로 물러난다. 올리면 더 멀리서 던진다. 원숭이.	Backs away when a player is closer than this. Higher = throws from farther. Monkey.
+RangedMonsterConfig.muzzleOffset	발사 위치 거리 (칸)	Muzzle offset (tiles)	몸 중심에서 투사체가 나오는 거리. 원숭이.	Distance from body center where projectiles spawn. Monkey.
+# ── 동물별 패턴 — 정면 방어(돼지)
+ShieldMonsterConfig.shieldHalfAngle	방패 반각 (도)	Shield half-angle (deg)	정면에서 좌우 이 각도 안에서 온 공격을 막는다. 올리면 돌아 들어가기 어려워진다. 돼지.	Blocks attacks within this angle left/right of facing. Higher = harder to flank. Pig.
+ShieldMonsterConfig.frontDamageMultiplier	정면 받는 대미지 배율 (×)	Front damage taken (×)	방패로 막은 공격의 대미지 배율(최소 1). 올리면 정면 공격도 잘 들어간다. 돼지.	Damage multiplier for blocked hits (min 1). Higher = frontal hits do more. Pig.
+ShieldMonsterConfig.counterWindupDuration	반격 예고 시간 (초)	Counter telegraph time (s)	정면으로 막은 뒤 반격 예고 시간. 올리면 반격을 피하기 쉬워진다. 돼지.	Counter telegraph after a frontal block. Higher = easier to dodge the counter. Pig.
+ShieldMonsterConfig.counterCooldown	반격 쿨 (초)	Counter cooldown (s)	반격 후 다음 반격까지 기다리는 시간. 돼지.	Wait before the next counter. Pig.
+ShieldMonsterConfig.shieldTurnSpeed	방패 회전 속도 (도/초)	Shield turn speed (deg/s)	방패(정면)가 도는 최대 속도. 내리면 플레이어가 돌아 들어갈 틈이 커진다. 돼지.	Max turn speed of the shield (facing). Lower = easier to flank. Pig.
+ShieldMonsterConfig.shieldDownDuration	반격 후 방패 내림 (초)	Shield down after counter (s)	반격을 휘두른 직후 방패를 내리는 시간 — 이 동안은 정면 감소 없음. 돼지.	Shield is lowered right after a counter — no frontal reduction meanwhile. Pig.
+# ── 동물별 패턴 — 털 폭발(양)
+WoolMonsterConfig.woolMax	털 최대 개수 (개)	Max wool	맞을 때마다 털 +1, 이 수가 차면 털 폭발을 준비한다. 내리면 폭발이 자주 나온다. 양.	+1 wool per hit taken; at this count it prepares a wool burst. Lower = more frequent bursts. Sheep.
+WoolMonsterConfig.burstRadius	털 폭발 반경 (칸)	Burst radius (tiles)	털 폭발 원형 예고·판정 반경. 양.	Radius of the wool burst circle (telegraph and hit). Sheep.
+WoolMonsterConfig.burstWindupDuration	털 폭발 예고 시간 (초)	Burst telegraph time (s)	털 폭발 예고 시간. 올리면 피하기 쉬워진다. 양.	Wool burst telegraph time. Higher = easier to dodge. Sheep.
+WoolMonsterConfig.burstTriggerRange	털 폭발 시작 거리 (칸)	Burst start range (tiles)	털이 가득 찼을 때 플레이어가 이 거리 안이면 멈춰서 털 폭발 예고를 시작한다. 양.	When wool is full, stops and starts the burst telegraph if a player is within this distance. Sheep.
+# ── 정예 (EliteConfig)
+EliteConfig.healthMultiplier	정예 체력 배율 (×)	Elite health (×)	정예 최대 체력 = 잡몹 체력 × 이 값(그 뒤 층·인원 배율). 12종 공용.	Elite max health = mob health × this (then floor/party ×). Shared by all 12.
+EliteConfig.attackDamageMultiplier	정예 공격 배율 (×)	Elite damage (×)	정예 공격력 = 잡몹 공격력 × 이 값(그 뒤 층 대미지 배율). 12종 공용.	Elite damage = mob attack damage × this (then floor damage ×). Shared by all 12.
+# ── 상태이상 (StatusEffectConfig — 플레이어가 잡몹·보스에 거는 속성 효과)
+StatusEffectConfig.tickInterval	도트 간격 (초)	DoT interval (s)	화상·독 도트 대미지가 들어가는 간격. 초당 대미지는 그대로, 내리면 더 잘게 자주 들어간다.	Interval of burn/poison ticks. Damage per second is kept; lower = smaller, more frequent ticks.
+StatusEffectConfig.fireMaxStacks	화상 최대 스택 (개)	Burn max stacks	화상 스택 상한. 올리면 오래 때릴수록 도트가 더 세진다.	Burn stack cap. Higher = DoT keeps growing longer.
+StatusEffectConfig.fireDpsPerStack	화상 대미지 (초당·스택당)	Burn damage (per s, per stack)	화상 스택 하나당 초당 대미지.	Burn damage per second per stack.
+StatusEffectConfig.fireDuration	화상 지속 시간 (초)	Burn duration (s)	새로 맞을 때마다 갱신되는 화상 지속 시간.	Burn duration, refreshed on each new hit.
+StatusEffectConfig.poisonMaxStacks	중독 최대 스택 (개)	Poison max stacks	중독 스택 상한.	Poison stack cap.
+StatusEffectConfig.poisonDpsPerStack	중독 대미지 (초당·스택당)	Poison damage (per s, per stack)	중독 스택 하나당 초당 대미지.	Poison damage per second per stack.
+StatusEffectConfig.poisonDuration	중독 지속 시간 (초)	Poison duration (s)	새로 맞을 때마다 갱신되는 중독 지속 시간.	Poison duration, refreshed on each new hit.
+StatusEffectConfig.iceSlowMultipliers	냉기 스택별 이동속도 배율 (×)	Chill slow per stack (×)	냉기 스택 1/2/3…일 때 대상 이동속도 배율. 배열 길이 = 최대 스택. 내릴수록 더 느려진다.	Target move speed × at chill stack 1/2/3…; array length = max stacks. Lower = slower.
+StatusEffectConfig.iceStackDuration	냉기 지속 시간 (초)	Chill duration (s)	새로 맞을 때마다 갱신되는 냉기 지속 시간.	Chill duration, refreshed on each new hit.
+StatusEffectConfig.earthStunDuration	대지 경직 시간 (초)	Earth stun (s)	대지 속성 명중 시 경직 시간.	Stun time on an Earth hit.
+StatusEffectConfig.earthStunCooldown	대지 재경직 대기 (초)	Earth stun cooldown (s)	같은 대상을 다시 경직시킬 수 있을 때까지의 시간. 내리면 경직이 자주 걸린다.	Time before the same target can be stunned again. Lower = more frequent stuns.
+StatusEffectConfig.electricDischargeStacks	방전까지 감전 스택 (개)	Shock stacks to discharge	감전 스택이 이 수에 닿는 순간 방전한다. 내리면 방전이 자주 나온다.	Discharges the moment shock stacks reach this. Lower = more frequent discharges.
+StatusEffectConfig.electricDischargeDamage	방전 대미지	Discharge damage	방전 한 번의 대미지.	Damage of one discharge.
+StatusEffectConfig.electricParalyzeDuration	방전 마비 시간 (초)	Discharge paralyze (s)	방전 때 대상이 마비되는 시간.	Paralysis time on discharge.
+StatusEffectConfig.electricStackDuration	감전 지속 시간 (초)	Shock duration (s)	새로 맞을 때마다 갱신되는 감전 스택 지속 시간.	Shock stack duration, refreshed on each new hit.
+RatSkillConfig.vulnerableMaxStacks	취약 최대 스택 (개)	Vulnerable max stacks	쥐 갉기로 쌓는 취약 스택 상한.	Cap of Vulnerable stacks built by Rat gnaw.
+RatSkillConfig.vulnerableDuration	취약 지속 시간 (초)	Vulnerable duration (s)	새로 맞을 때마다 갱신, 끝나면 스택 0.	Refreshed on each new hit; stacks reset to 0 when it ends.
+RatSkillConfig.vulnerableDamagePerStack	취약 스택당 받는 대미지 증가 (0~1)	Vulnerable damage per stack (0~1)	스택 하나당 받는 명중 대미지 증가 비율(0.06 = +6%).	Extra hit damage taken per stack (0.06 = +6%).
+# ── 보스 몸 (BossStatsConfig)
+BossStatsConfig.maxHealth	보스 체력	Boss health	스폰 때 보스 최대 체력. 층 체력 배율이 곱해진다(인원 배율은 제외).	Boss max health at spawn. Floor health × applies (party × does not).
+BossStatsConfig.usesPersonalQuota	개인 할당량 사용	Use personal quota	켜면 파티원 수만큼 체력을 나눠 개인 할당량으로 관리하고, 끄면 공유 체력으로 동작한다.	On = health is split into per-player quotas; off = one shared health pool.
+BossStatsConfig.supportGaugeThreshold	지원 발동 게이지	Support gauge threshold	개인 할당량 모드에서 할당량을 넘긴 대미지가 이만큼 쌓이면 아직 할당량이 남은 파티원 전원이 회복한다. 내리면 지원이 자주 나온다.	In quota mode, when overflow damage reaches this, party members with quota left are healed. Lower = more frequent support.
+BossStatsConfig.supportHealAmount	지원 회복량	Support heal	지원 발동 때 회복량.	Heal amount when support triggers.
+BossStatsConfig.weaponDamageToBoss	무기 → 보스 대미지	Weapon damage to boss	무기 기본 공격이 보스에게 주는 고정 대미지. 파편 뱉기·흡수 스킬이 주 딜 수단이 되게 낮게 둔다.	Fixed damage of basic weapon attacks to the boss. Kept low so spit and absorb skills are the main damage.
+BossStatsConfig.armorMax	갑옷 최대치	Max armor	상황 특성 '갑옷' 층에서 보스 갑옷 양. 올리면 갑옷을 깨는 데 오래 걸린다.	Boss armor amount on Armored floors. Higher = longer to break.
+BossStatsConfig.armorDamageScale	갑옷 중 받는 대미지 배율 (×)	Damage taken while armored (×)	갑옷이 남아 있는 동안 받는 대미지 배율(올림, 최소 1).	Damage multiplier while armor remains (rounded up, min 1).
+BossStatsConfig.armorBreakOxCharge	갑옷 감소 — 소 돌진 (회당)	Armor break — Ox charge (per hit)	소 돌진 명중 1회당 갑옷 감소량.	Armor removed per Ox charge hit.
+BossStatsConfig.armorBreakAbsorbSkill	갑옷 감소 — 흡수 스킬 (회당)	Armor break — absorb skill (per hit)	그 외 흡수 스킬 직접 명중 1회당 갑옷 감소량.	Armor removed per direct hit of other absorb skills.
+BossStatsConfig.armorBreakSpit	갑옷 감소 — 파편 뱉기 (회당)	Armor break — spit (per hit)	파편 뱉기 명중 1회당 갑옷 감소량.	Armor removed per spit hit.
+BossStatsConfig.armorBreakRatExtra	갑옷 추가 감소 — 쥐 갉기 (회당)	Extra armor break — Rat gnaw (per hit)	쥐 갉기 명중 1회당 추가 감소(흡수 스킬 감소에 더해짐). 소가 없을 때의 두 번째 해법.	Extra armor removed per Rat gnaw hit (on top of the absorb skill amount). Second answer when no Ox.
+BossStatsConfig.regenPercentPerSecond	재생 (최대 체력 %/초)	Regen (% max health/s)	상황 특성 '재생' 층에서 초당 최대 체력의 몇 %를 회복하는지. 화상 스택이 있으면 멈춘다.	On Regenerating floors, % of max health healed per second. Stops while burning.
+# ── 보스 패턴 세트 (BossPatternSet)
+BossPatternSet.patterns	패턴 항목	Pattern entries	항목 순서 = 후보 순서. 근접 우선 패턴(A)은 가중 무작위 전에 먼저 본다.	Entry order = candidate order. Melee-priority pattern (A) is checked before the weighted pick.
+BossPatternSet.phase2HealthRatio	페이즈 2 체력 비율 (0~1)	Phase 2 health ratio (0~1)	보스 체력 비율이 이 값 이하가 되면 페이즈 2(C 추가).	Phase 2 (adds C) when boss health ratio drops to this.
+BossPatternSet.phase3HealthRatio	페이즈 3 체력 비율 (0~1)	Phase 3 health ratio (0~1)	이 값 이하에서 페이즈 3(D 추가).	Phase 3 (adds D) at or below this.
+BossPatternSet.enrageHealthRatio	폭주 체력 비율 (0~1)	Enrage health ratio (0~1)	이 값 이하에서 페이즈 4 폭주(E 추가, 쿨 감소).	Phase 4 enrage (adds E, shorter cooldowns) at or below this.
+BossPatternSet.enrageCooldownMultiplier	폭주 쿨 배율 (×)	Enrage cooldown (×)	폭주 중 새로 채우는 쿨(폭주 쿨 배율 적용이 켜진 항목)에 곱한다. 내리면 폭주가 더 거세진다.	Multiplies cooldowns refilled during enrage (entries with Apply enrage cooldown on). Lower = fiercer enrage.
+BossPatternSet.firstChargeDelay	첫 돌진 쿨 (초)	First charge delay (s)	첫 쿨 규칙이 '첫 돌진 쿨'인 항목의 첫 쿨(B는 시작 때, C는 페이즈 2 진입 때).	First cooldown of FirstChargeDelay entries (B at start, C on entering phase 2).
+BossPatternSet.newPatternDelay	새 패턴 첫 쿨 (초)	New pattern delay (s)	첫 쿨 규칙이 '새 패턴 쿨'인 항목의 첫 쿨(D·E 페이즈 진입 때).	First cooldown of NewPatternDelay entries (D, E on entering their phase).
+BossPatternSet.Entry.pattern	패턴	Pattern	이 항목이 쓰는 패턴 에셋.	Pattern asset used by this entry.
+BossPatternSet.Entry.unlockPhase	열리는 페이즈 (1~4)	Unlock phase (1~4)	이 페이즈부터 쓴다. 1이면 처음부터.	Used from this phase on. 1 = from the start.
+BossPatternSet.Entry.firstCooldown	첫 쿨 규칙	First cooldown rule	패턴이 처음 열릴 때 넣는 쿨: 바로 = 0초, 첫 돌진 쿨 = '첫 돌진 쿨 (초)' 값, 새 패턴 쿨 = '새 패턴 첫 쿨 (초)' 값.	Cooldown set when the pattern first unlocks: Zero = ready now, FirstChargeDelay / NewPatternDelay = those set values.
+BossPatternSet.Entry.applyEnrageMultiplier	폭주 쿨 배율 적용	Apply enrage cooldown	켜면 폭주 중 채우는 쿨에 폭주 쿨 배율을 곱한다. E처럼 쿨이 이미 폭주 기준이면 끈다.	On = enrage cooldown × applies to this pattern's cooldown during enrage. Off for patterns already tuned for enrage (E).
+# ── 보스 패턴 공용
+*.telegraphColor	예고 색	Telegraph color	예고 범위 표시 색(투명도 포함). 수치에는 영향 없음.	Telegraph area color (with alpha). No gameplay effect.
+# ── 보스 패턴 A 뿔 휘두르기 (BossPatternSwing)
+BossPatternSwing.swingTriggerRange	휘두르기 시작 거리 (칸)	Swing start range (tiles)	가장 가까운 플레이어가 이 거리 안이고 A 쿨이 돌아왔으면 다른 패턴보다 먼저 휘두른다. 판정 반경보다 넓게 잡는다. 패턴 A.	If the nearest player is within this and A is off cooldown, swings before any other pattern. Keep wider than the hit radius. Pattern A.
+BossPatternSwing.swingRadius	휘두르기 반경 (칸)	Swing radius (tiles)	부채꼴 예고·판정 반경. 패턴 A.	Cone radius (telegraph and hit). Pattern A.
+BossPatternSwing.swingHalfAngle	휘두르기 반각 (도)	Swing half-angle (deg)	부채꼴 반각(정면에서 좌우). 패턴 A.	Cone half-angle (left/right of facing). Pattern A.
+BossPatternSwing.swingTelegraphDuration	예고 시간 (초)	Telegraph time (s)	휘두르기 예고 시간. 올리면 피하기 쉬워진다. 패턴 A.	Swing telegraph time. Higher = easier to dodge. Pattern A.
+BossPatternSwing.swingDamage	대미지	Damage	휘두르기 한 번의 대미지(층 대미지 배율 적용). 패턴 A.	Damage of one swing (floor damage × applies). Pattern A.
+BossPatternSwing.swingCooldown	쿨 (초)	Cooldown (s)	휘두르기 후 다시 쓸 수 있을 때까지. 패턴 A.	Time until the swing can be used again. Pattern A.
+BossPatternSwing.swingRecoveryDuration	후딜 (초)	Recovery time (s)	휘두르기 후 멈춰 있는 시간. 패턴 A.	Standing time after the swing. Pattern A.
+BossPatternSwing.debrisPerSwing	파편 개수 (개)	Debris count	휘두르기(연타 포함)가 끝날 때 보스 주변에 떨어뜨리는 파편 수. 패턴 A.	Debris dropped around the boss when the swing (incl. flurry) ends. Pattern A.
+BossPatternSwing.flurryHitCount	연타 타수 (회)	Flurry hits	상황 특성 '연타 휘두르기' 층에서 휘두르기 1회의 총 타격 수(첫 타 포함). 패턴 A.	On Flurry Swing floors, total hits per swing (first included). Pattern A.
+BossPatternSwing.flurryInterval	연타 간격 (초)	Flurry interval (s)	연타 사이 간격. 돼지 반격 쿨(연타 층)보다 길어야 매 타격마다 반격한다. 패턴 A.	Time between flurry hits. Must exceed the Pig counter cooldown (flurry floors) to counter every hit. Pattern A.
+BossPatternSwing.flurryDamageScale	연타 대미지 배율 (×)	Flurry damage (×)	연타 한 번의 대미지 = 반올림(휘두르기 대미지 × 이 값). 패턴 A.	Flurry hit damage = round(swing damage × this). Pattern A.
+# ── 보스 패턴 B 강화 박치기 돌진 (BossPatternCharge)
+BossPatternCharge.telegraphDuration	예고 시간 (초)	Telegraph time (s)	돌진 예고 시간. 올리면 피하기 쉬워진다. 패턴 B.	Charge telegraph time. Higher = easier to dodge. Pattern B.
+BossPatternCharge.chargeLength	돌진 거리 (칸)	Charge distance (tiles)	돌진 최대 거리 = 예고 직선 길이. 패턴 B.	Max charge distance = telegraph line length. Pattern B.
+BossPatternCharge.chargeWidth	돌진 폭 (칸)	Charge width (tiles)	돌진 판정·예고 폭. 패턴 B.	Charge hit and telegraph width. Pattern B.
+BossPatternCharge.chargeSpeed	돌진 속도 (칸/초)	Charge speed (tiles/s)	돌진 이동 속도. 패턴 B.	Charge movement speed. Pattern B.
+BossPatternCharge.damage	대미지	Damage	돌진 명중 대미지(층 대미지 배율 적용). 패턴 B.	Charge hit damage (floor damage × applies). Pattern B.
+BossPatternCharge.wallStaggerDuration	벽 충돌 무방비 (초)	Wall stagger (s)	벽에 부딪혔을 때 무방비(딜 타임) 시간. 올리면 벽 유도 보상이 커진다. 패턴 B.	Stagger (damage window) after hitting a wall. Higher = bigger reward for wall baiting. Pattern B.
+BossPatternCharge.recoveryDuration	벽 없을 때 경직 (초)	No-wall stagger (s)	벽에 안 부딪히고 거리를 다 갔을 때 짧은 경직. 패턴 B.	Short stagger after running the full distance without a wall. Pattern B.
+BossPatternCharge.debrisPerImpact	파편 개수 (개)	Debris count	돌진이 끝날 때 파편 수(벽에 부딪혔든 거리를 다 갔든). 패턴 B.	Debris when the charge ends (wall or full distance). Pattern B.
+BossPatternCharge.cooldown	쿨 (초)	Cooldown (s)	돌진 후 다시 쓸 수 있을 때까지(무방비가 끝날 때 채움). 패턴 B.	Time until reuse (filled when the stagger ends). Pattern B.
+BossPatternCharge.weightB	선택 가중치	Pick weight	쿨이 돌아온 후보 중 가중 무작위로 고를 때의 가중치. 올리면 자주 나온다. 패턴 B.	Weight in the weighted random pick among ready patterns. Higher = more often. Pattern B.
+# ── 보스 패턴 C 연속 돌진 (BossPatternRush)
+BossPatternRush.rushCount	돌진 횟수 (회)	Charge count	한 번에 이어서 하는 돌진 수. 패턴 C.	Charges in a row. Pattern C.
+BossPatternRush.rushFirstTelegraphDuration	첫 예고 시간 (초)	First telegraph time (s)	첫 돌진의 예고 시간. 패턴 C.	Telegraph time of the first charge. Pattern C.
+BossPatternRush.rushReaimDuration	재조준 예고 시간 (초)	Re-aim telegraph time (s)	두 번째 돌진부터의 재조준 예고 시간. 올리면 연속 돌진을 피하기 쉬워진다. 패턴 C.	Re-aim telegraph from the 2nd charge. Higher = easier to dodge. Pattern C.
+BossPatternRush.rushDamage	대미지 (회당)	Damage (per charge)	돌진 한 번의 명중 대미지(층 대미지 배율 적용). 패턴 C.	Hit damage per charge (floor damage × applies). Pattern C.
+BossPatternRush.rushCooldown	쿨 (초)	Cooldown (s)	연속 돌진 후 다시 쓸 수 있을 때까지. 패턴 C.	Time until reuse. Pattern C.
+BossPatternRush.debrisPerRushWall	파편 개수 (개)	Debris count	마지막 돌진이 끝날 때 파편 수(중간 돌진은 0). 패턴 C.	Debris when the last charge ends (none for middle charges). Pattern C.
+BossPatternRush.weightC	선택 가중치	Pick weight	쿨이 돌아온 후보 중 가중 무작위 가중치. 패턴 C.	Weight in the weighted random pick. Pattern C.
+BossPatternRush.chargeLength	돌진 거리 (칸)	Charge distance (tiles)	돌진 최대 거리 = 예고 직선 길이(패턴 B와 같은 값으로 둠). 패턴 C.	Max charge distance = telegraph length (kept equal to pattern B). Pattern C.
+BossPatternRush.chargeWidth	돌진 폭 (칸)	Charge width (tiles)	돌진 판정·예고 폭(패턴 B와 같은 값으로 둠). 패턴 C.	Charge hit and telegraph width (kept equal to pattern B). Pattern C.
+BossPatternRush.chargeSpeed	돌진 속도 (칸/초)	Charge speed (tiles/s)	돌진 이동 속도(패턴 B와 같은 값으로 둠). 패턴 C.	Charge speed (kept equal to pattern B). Pattern C.
+BossPatternRush.wallStaggerDuration	벽 충돌 무방비 (초)	Wall stagger (s)	마지막 돌진이 벽에 부딪혔을 때 무방비 시간. 패턴 C.	Stagger when the last charge hits a wall. Pattern C.
+BossPatternRush.recoveryDuration	벽 없을 때 경직 (초)	No-wall stagger (s)	마지막 돌진이 벽 없이 끝났을 때 짧은 경직. 패턴 C.	Short stagger when the last charge ends without a wall. Pattern C.
+# ── 보스 패턴 D 지진 강타 (BossPatternQuake)
+BossPatternQuake.quakeTelegraphDuration	예고 시간 (초)	Telegraph time (s)	지진 강타 예고 시간. 올리면 피하기 쉬워진다. 패턴 D.	Quake telegraph time. Higher = easier to dodge. Pattern D.
+BossPatternQuake.quakeRadius	반경 (칸)	Radius (tiles)	보스 중심 원형 판정 반경. 패턴 D.	Radius of the circle around the boss. Pattern D.
+BossPatternQuake.quakeDamage	대미지	Damage	명중 대미지(층 대미지 배율 적용). 패턴 D.	Hit damage (floor damage × applies). Pattern D.
+BossPatternQuake.quakeCooldown	쿨 (초)	Cooldown (s)	지진 강타 후 다시 쓸 수 있을 때까지. 패턴 D.	Time until reuse. Pattern D.
+BossPatternQuake.quakeRecoveryDuration	후딜 (초)	Recovery time (s)	강타 후 멈춰 있는 시간. 패턴 D.	Standing time after the slam. Pattern D.
+BossPatternQuake.quakeShakeDuration	화면 흔들림 시간 (초)	Screen shake time (s)	강타 때 화면 흔들림 시간(연출). 패턴 D.	Camera shake time on the slam (visual). Pattern D.
+BossPatternQuake.quakeShakeAmplitude	화면 흔들림 세기	Screen shake strength	강타 때 화면 흔들림 폭(연출). 패턴 D.	Camera shake amplitude on the slam (visual). Pattern D.
+BossPatternQuake.debrisPerQuake	파편 개수 (개)	Debris count	충격파 뒤 보스 주변 원형으로 흩뿌리는 파편 수. 패턴 D.	Debris scattered in a ring after the shockwave. Pattern D.
+BossPatternQuake.weightDNear	선택 가중치 (가까울 때)	Pick weight (near)	반경 안에 플레이어가 있을 때의 가중치. 패턴 D.	Weight when a player is inside the radius. Pattern D.
+BossPatternQuake.weightDFar	선택 가중치 (멀 때)	Pick weight (far)	반경 안에 플레이어가 없을 때의 가중치. 패턴 D.	Weight when no player is inside the radius. Pattern D.
+# ── 보스 패턴 E 포효 대지분쇄 (BossPatternRoar)
+BossPatternRoar.roarTelegraphDuration	예고 시간 (초)	Telegraph time (s)	포효 예고 시간. 올리면 피하기 쉬워진다. 패턴 E(폭주 전용).	Roar telegraph time. Higher = easier to dodge. Pattern E (enrage only).
+BossPatternRoar.roarRadius	반경 (칸)	Radius (tiles)	보스 중심 원형 판정 반경. 패턴 E.	Radius of the circle around the boss. Pattern E.
+BossPatternRoar.roarDamage	대미지	Damage	명중 대미지(층 대미지 배율 적용). 패턴 E.	Hit damage (floor damage × applies). Pattern E.
+BossPatternRoar.roarCooldown	쿨 (초)	Cooldown (s)	포효 후 다시 쓸 수 있을 때까지(무방비가 끝날 때 채움). 패턴 E.	Time until reuse (filled when the stagger ends). Pattern E.
+BossPatternRoar.roarStaggerDuration	포효 후 무방비 (초)	Stagger after roar (s)	충격파 뒤 무방비(딜 타임) 시간. 올리면 딜 타임이 길어진다. 패턴 E.	Stagger (damage window) after the shockwave. Higher = longer damage window. Pattern E.
+BossPatternRoar.roarShakeDuration	화면 흔들림 시간 (초)	Screen shake time (s)	포효 때 화면 흔들림 시간(연출). 패턴 E.	Camera shake time on the roar (visual). Pattern E.
+BossPatternRoar.roarShakeAmplitude	화면 흔들림 세기	Screen shake strength	포효 때 화면 흔들림 폭(연출). 패턴 E.	Camera shake amplitude on the roar (visual). Pattern E.
+BossPatternRoar.roarTelegraphColor	예고 색	Telegraph color	포효 예고 범위 표시 색(투명도 포함). 수치에는 영향 없음. 패턴 E.	Roar telegraph color (with alpha). No gameplay effect. Pattern E.
+BossPatternRoar.roarBlinkRate	경고 깜빡임 속도 (회/초)	Warning blink rate (per s)	긴 경고 예고가 깜빡이는 속도(연출). 패턴 E.	Blink speed of the long warning telegraph (visual). Pattern E.
+BossPatternRoar.debrisPerRoar	파편 개수 (개)	Debris count	무방비 시작 때 보스 주변 원형으로 흩뿌리는 파편 수. 패턴 E.	Debris scattered in a ring when the stagger starts. Pattern E.
+BossPatternRoar.weightE	선택 가중치	Pick weight	쿨이 돌아온 후보 중 가중 무작위 가중치. 패턴 E.	Weight in the weighted random pick. Pattern E.
+# ── 난이도 (DifficultyConfig)
+DifficultyConfig.monsterMoveSpeedScale	몬스터 이동속도 배율 (×)	Monster move speed (×)	모든 잡몹·정예 추격 이동속도에 곱한다(1 = 에셋 값 그대로).	Multiplies chase speed of all mobs and elites (1 = asset value).
+DifficultyConfig.monsterAttackCooldownScale	몬스터 공격 쿨 배율 (×)	Monster attack cooldown (×)	잡몹 공격 쿨에 곱한다. 올리면 공격 간격이 길어진다.	Multiplies mob attack cooldown. Higher = longer between attacks.
+DifficultyConfig.monsterWindupScale	몬스터 예고 시간 배율 (×)	Monster telegraph time (×)	잡몹 공격 예고 시간에 곱한다. 올리면 피할 시간이 길어진다.	Multiplies mob telegraph time. Higher = more time to dodge.
+DifficultyConfig.floorHealthMultipliers	층별 체력 배율 (×)	Floor health (×)	층별 몬스터 최대 체력 배율(칸 1 = 1층). 잡몹·정예·보스 스폰 체력에 곱한다. 배열이 짧으면 마지막 값.	Monster max health × per floor (slot 1 = floor 1). Applies to mob, elite and boss spawn health. Short array = last value.
+DifficultyConfig.floorDamageMultipliers	층별 대미지 배율 (×)	Floor damage (×)	층별 몬스터→플레이어 대미지 배율(칸 1 = 1층). 잡몹·정예 공격·투사체, 보스 패턴 타격에 곱한다.	Monster→player damage × per floor (slot 1 = floor 1). Applies to mob/elite attacks, projectiles and boss patterns.
+DifficultyConfig.partyHealthMultipliers	인원별 체력 배율 (×)	Party health (×)	인원별 몬스터 최대 체력 배율(칸 1 = 1인). 잡몹·정예만(보스 제외). 인원 = 스폰 순간 접속 인원.	Monster max health × per party size (slot 1 = 1 player). Mobs and elites only (not the boss). Party = players connected at spawn.
+# ── 동물 스킬 (AbsorbSkillConfig 계열 — 플레이어가 흡수한 동물의 스킬)
+DogSkillConfig.dogCompanionPrefab	동료 개 프리팹	Dog companion prefab	개 특성을 든 동안 서버가 스폰하는 동료 프리팹(DogCompanion). 동료의 이동·물기 수치는 그 프리팹에 있다. 개.	Companion prefab (DogCompanion) spawned while holding the Dog trait. Its move/bite values live in that prefab. Dog.
+DragonSkillConfig.dragonBreathDamageScale	브레스 대미지 배율 (×, 틱당)	Breath damage (×, per tick)	틱 1회당 대미지 = 기본 공격 × 이 값. 빠르고 약하게 계속 뿜는다. 용.	Damage per tick = basic attack × this. Fast, weak, continuous. Dragon.
+DragonSkillConfig.dragonBreathTickInterval	브레스 틱 간격 (초)	Breath tick interval (s)	브레스 판정 간격. 내리면 초당 대미지가 커진다. 용.	Time between breath hits. Lower = more damage per second. Dragon.
+DragonSkillConfig.dragonBreathRadius	브레스 반경 (칸)	Breath radius (tiles)	부채꼴 판정 반경. 용.	Cone hit radius. Dragon.
+DragonSkillConfig.dragonBreathHalfAngle	브레스 반각 (도)	Breath half-angle (deg)	부채꼴 반각(정면에서 좌우). 용.	Cone half-angle (left/right of facing). Dragon.
+DragonSkillConfig.dragonBreathColor	브레스 색	Breath color	속성이 없을 때 브레스 연출 색(속성이 있으면 속성 색). 수치에는 영향 없음. 용.	Breath color without an Element (Element color otherwise). No gameplay effect. Dragon.
+HorseSkillConfig.horseDashCharges	연속 대시 횟수 (회)	Dash charges	쿨다운 전에 연달아 쓸 수 있는 대시 횟수. 말.	Dashes usable in a row before the cooldown. Horse.
+HorseSkillConfig.horseSecondDashWindow	이어 대시 허용 시간 (초)	Follow-up dash window (s)	앞 대시가 끝난 뒤 다음 대시를 쿨 없이 이어 쓸 수 있는 시간. 지나면 대시 쿨 시작. 말.	Time after a dash to chain the next one without cooldown; afterwards the dash cooldown starts. Horse.
+HorseSkillConfig.horseDashDamageScale	대시 경로 대미지 배율 (×)	Dash path damage (×)	대시로 통과하며 주는 대미지 = 기본 공격 × 이 값(넉백 없음). 말.	Damage dealt passing through = basic attack × this (no knockback). Horse.
+MonkeySkillConfig.bananaProjectilePrefab	바나나 프리팹	Banana prefab	기본 공격 대신 마우스 방향으로 던지는 바나나 투사체 프리팹(BananaProjectile). 대미지·넉백·수명은 그 프리팹에 있다. 원숭이.	Banana projectile prefab (BananaProjectile) thrown toward the mouse instead of the basic attack. Damage/knockback/lifetime live in that prefab. Monkey.
+OxSkillConfig.oxKnockbackScale	넉백 배율 (×)	Knockback (×)	소를 든 동안 넉백 기준 배율(돌진 명중·부채꼴 공격 공통). 올리면 적이 멀리 밀린다. 소.	Knockback base multiplier while holding Ox (charge hits and cone attacks). Higher = pushes enemies farther. Ox.
+OxSkillConfig.oxChargeDistance	돌진 거리 (칸)	Charge distance (tiles)	기본 공격 대신 마우스 방향으로 돌진하는 거리(무적 없음). 소.	Distance of the mouse-direction charge that replaces the basic attack (no invulnerability). Ox.
+OxSkillConfig.oxChargeDuration	돌진 시간 (초)	Charge time (s)	돌진 거리를 가는 데 걸리는 시간. 내리면 더 빠르게 돌진한다. 소.	Time to cover the charge distance. Lower = faster charge. Ox.
+OxSkillConfig.oxChargeHitRadius	돌진 판정 반경 (칸)	Charge hit radius (tiles)	돌진 중 몸 주변 원형 판정 반경(같은 적은 돌진당 한 번). 소.	Circle hit radius around the body during the charge (each enemy once per charge). Ox.
+OxSkillConfig.oxChargeDamageScale	돌진 대미지 배율 (×)	Charge damage (×)	돌진 명중 대미지 = 기본 공격 × 이 값. 소.	Charge hit damage = basic attack × this. Ox.
+PigSkillConfig.pigGuardBlockAngle	가드 막기 각도 (도)	Guard block angle (deg)	가드 무적 부채꼴 전체 폭(정면 기준 좌우 절반씩). 기본 가드 각도를 이 값으로 덮는다. 돼지.	Full width of the guard block cone (half each side of facing). Replaces the default guard angle. Pig.
+PigSkillConfig.pigCounterDamageScale	반격 대미지 배율 (×)	Counter damage (×)	반격 대미지 = 기본 공격 × 이 값. 돼지.	Counter damage = basic attack × this. Pig.
+PigSkillConfig.pigCounterCooldown	반격 쿨 (초)	Counter cooldown (s)	반격 재발동까지의 시간. 돼지.	Time before the counter can trigger again. Pig.
+PigSkillConfig.pigCounterCooldownFlurry	반격 쿨 — 연타 층 (초)	Counter cooldown — flurry floor (s)	상황 특성 '연타 휘두르기' 층에서의 반격 쿨. 보스 연타 간격보다 짧아야 매 타격마다 반격한다. 돼지.	Counter cooldown on Flurry Swing floors. Must be shorter than the boss flurry interval to counter every hit. Pig.
+PigSkillConfig.pigCounterRadiusMargin	반격 반경 여유 (칸)	Counter radius margin (tiles)	반격 반경 = max(기본 반경, 공격자 거리 + 이 값) — 막은 공격자는 반드시 맞는다. 돼지.	Counter radius = max(base radius, attacker distance + this) — the blocked attacker is always hit. Pig.
+RabbitSkillConfig.earWhipLength	귀 채찍 길이 (칸)	Ear whip length (tiles)	직선 판정 길이 = 끝부분 사거리 링 바깥 반경. 토끼.	Line hit length = outer radius of the tip range ring. Rabbit.
+RabbitSkillConfig.earWhipWidth	귀 채찍 폭 (칸)	Ear whip width (tiles)	직선 판정 폭. 토끼.	Line hit width. Rabbit.
+RabbitSkillConfig.earWhipTipLength	끝부분 길이 (칸)	Tip length (tiles)	거리 ≥ 길이 − 이 값이면 끝부분 강타. 올리면 강타 구간이 넓어진다. 토끼.	Distance ≥ length − this is a tip strike. Higher = wider strong zone. Rabbit.
+RabbitSkillConfig.earWhipCloseRange	근접 구간 (칸)	Close range (tiles)	거리 < 이 값이면 약한 근접 타격. 토끼.	Distance < this is a weak close hit. Rabbit.
+RabbitSkillConfig.earWhipTipDamageScale	끝부분 대미지 배율 (×)	Tip damage (×)	끝부분 명중 대미지 = 기본 공격 × 이 값. 토끼.	Tip hit damage = basic attack × this. Rabbit.
+RabbitSkillConfig.earWhipMidDamageScale	중간 대미지 배율 (×)	Mid damage (×)	중간 구간 명중 대미지 = 기본 공격 × 이 값. 토끼.	Mid-zone hit damage = basic attack × this. Rabbit.
+RabbitSkillConfig.earWhipCloseDamageScale	근접 대미지 배율 (×)	Close damage (×)	근접 구간 명중 대미지 = 기본 공격 × 이 값. 토끼.	Close-zone hit damage = basic attack × this. Rabbit.
+RabbitSkillConfig.earWhipTipStunDuration	끝부분 경직 (초)	Tip stun (s)	끝부분 명중 시 대상 경직 시간. 토끼.	Stun on a tip hit. Rabbit.
+RabbitSkillConfig.earWhipVfxDuration	이펙트 시간 (초)	Effect time (s)	귀 직선 이펙트가 뻗었다 사라지는 시간(연출). 토끼.	Time the ear-line effect extends and fades (visual). Rabbit.
+RabbitSkillConfig.earWhipRingColor	끝부분 사거리 링 색	Tip range ring color	끝부분 사거리 링 표시 색(연출). 토끼.	Tip range ring color (visual). Rabbit.
+RabbitSkillConfig.earWhipCloseRingColor	근접 경계 원 색	Close range ring color	근접 경계 얇은 원 표시 색(연출). 토끼.	Thin close-range circle color (visual). Rabbit.
+RoosterSkillConfig.roosterDashDamageScale	대시 경로 대미지 배율 (×)	Dash path damage (×)	대시로 스치며 주는 대미지 = 기본 공격 × 이 값(넉백 없음). 닭.	Damage dealt passing through = basic attack × this (no knockback). Rooster.
+RoosterSkillConfig.roosterEggPrefab	알 프리팹	Egg prefab	대시마다 시작 위치에 낳는 알(아군 회복) 프리팹. 닭.	Egg (ally heal) prefab laid at the dash start each dash. Rooster.
+RoosterSkillConfig.maxEggsPerPlayer	최대 알 개수 (개)	Max eggs	플레이어별로 동시에 놓을 수 있는 알 수. 넘으면 가장 오래된 알부터 사라진다. 닭.	Eggs per player at once; the oldest disappears beyond this. Rooster.
+SheepSkillConfig.sheepWoolMax	털 최대 개수 (개)	Max wool	가드로 막을 때마다 털 +1, 이 수에 닿는 순간 털 폭발. 내리면 폭발이 자주 나온다. 양.	+1 wool per Guard block; bursts the moment it reaches this. Lower = more frequent bursts. Sheep.
+SheepSkillConfig.sheepBurstRadius	털 폭발 반경 (칸)	Wool burst radius (tiles)	털 폭발 원형 판정 반경. 양.	Wool burst circle radius. Sheep.
+SheepSkillConfig.sheepBurstDamageScale	털 폭발 대미지 배율 (×)	Wool burst damage (×)	털 폭발 대미지 = 기본 공격 × 이 값. 양.	Wool burst damage = basic attack × this. Sheep.
+SheepSkillConfig.sheepBurstColor	털 폭발 색	Wool burst color	털 폭발 연출 색. 수치에는 영향 없음. 양.	Wool burst effect color. No gameplay effect. Sheep.
+SnakeSkillConfig.snakeSlowMultiplier	둔화 배율 (×)	Slow (×)	명중한 적 이동속도 배율(0.6 = 40% 느려짐). 내릴수록 더 느려진다. 뱀.	Hit enemy move speed × (0.6 = 40% slower). Lower = stronger slow. Snake.
+SnakeSkillConfig.snakeSlowDuration	둔화 시간 (초)	Slow time (s)	감기 둔화 지속 시간. 뱀.	Duration of the bind slow. Snake.
+SnakeSkillConfig.snakeAttackRadius	공격 반경 (칸)	Attack radius (tiles)	주변 원 전체(360°) 공격 반경. 뱀.	Radius of the full-circle (360°) attack. Snake.
+TigerSkillConfig.tigerHitDamageScale	타당 대미지 배율 (×)	Damage per hit (×)	할퀴기 한 타의 대미지 = 기본 공격 × 이 값(마지막 타에만 넉백). 호랑이.	Damage of one claw hit = basic attack × this (knockback on the last hit only). Tiger.
+TigerSkillConfig.tigerAttackRadius	공격 반경 (칸)	Attack radius (tiles)	좁고 긴 부채꼴 판정 반경. 호랑이.	Radius of the narrow, long cone. Tiger.
+TigerSkillConfig.tigerAttackHalfAngle	공격 반각 (도)	Attack half-angle (deg)	부채꼴 반각(정면에서 좌우). 호랑이.	Cone half-angle (left/right of facing). Tiger.
+# 선택 칸(enum) 항목 이름: enum.<타입>.<값 이름>
+enum.BossPatternSet.FirstCooldownRule.Zero	바로	Ready at once	처음 열리면 쿨 없이 바로 쓸 수 있다(패턴 A).	Usable right away when unlocked (pattern A).
+enum.BossPatternSet.FirstCooldownRule.FirstChargeDelay	첫 돌진 쿨	First charge delay	세트의 '첫 돌진 쿨 (초)'만큼 기다린 뒤 쓴다(B 시작, C 페이즈 2 진입).	Waits the set's 'First charge delay (s)' (B at start, C on phase 2).
+enum.BossPatternSet.FirstCooldownRule.NewPatternDelay	새 패턴 쿨	New pattern delay	세트의 '새 패턴 첫 쿨 (초)'만큼 기다린 뒤 쓴다(D·E 페이즈 진입).	Waits the set's 'New pattern delay (s)' (D, E on entering their phase).
+MonkeySkillConfig.bananaDamageScale	바나나 대미지 배율 (×)	Banana damage multiplier (×)	바나나 한 발의 대미지 = 기본 공격 × 이 값. 던지는 간격은 기본 공격 주기(1초)와 같아 초당 대미지 = 기본 공격 × 이 값. 원숭이.	Damage of one banana = base attack × this. Thrown at the base attack rate (1 s), so DPS = base attack × this. Monkey.
+DogSkillConfig.dogBiteDamageScale	동료 물기 대미지 배율 (×)	Companion bite multiplier (×)	동료 개가 한 번 물 때의 대미지 = 기본 공격 × 이 값(약 1초마다). 올리면 자동 추가 대미지가 커진다. 개.	Damage of one companion bite = base attack × this (about once per second). Raise for more automatic damage. Dog.
+RoosterSkillConfig.eggHealAmount	알 회복량 (체력)	Egg heal (HP)	알을 먹으면 회복하는 체력(본인·팀원 모두). 닭.	HP restored when an egg is eaten (owner or teammate). Rooster.
+PassiveTraitData.attackDamageBonus	패시브 공격력 보너스 (+)	Passive attack bonus (+)	특성을 든 동안 기본 공격력(10)에 더하는 값. 흡수 스킬 대미지 배율이 이 합에 곱해지므로 스킬이 있는 동물은 효과가 커진다(예: 호랑이 3연타 = (10+보너스)×0.4×3).	Added to base attack (10) while holding the trait. Absorb skill multipliers apply on top, so it scales with the skill (e.g. Tiger 3-hit = (10+bonus)×0.4×3).
+PassiveTraitData.moveSpeedMultiplier	이동속도 배율 (×)	Move speed multiplier (×)	특성을 든 동안 플레이어 이동속도(4.5)에 곱하는 값. 1이면 그대로, 1.3이면 30% 빠름(소), 0.9면 10% 느림(호랑이).	Multiplies player move speed (4.5) while holding the trait. 1 = unchanged, 1.3 = 30% faster (Ox), 0.9 = 10% slower (Tiger).
+PassiveTraitData.displayName	표시 이름 (예비)	Display name (fallback)	언어 표에 이름이 없을 때만 쓰는 예비 이름. 시트에서는 보여 주지 않는다(인스펙터에서 수정).	Fallback name used only when the language table has none. Not shown on the sheet (edit in the Inspector).
+PassiveTraitData.locId	언어 키	Localization id	언어 표(strings.tsv)의 trait.<id> 키. 시트에서는 보여 주지 않는다.	Key trait.<id> in the language table (strings.tsv). Not shown on the sheet.
+PassiveTraitData.skill	연결된 흡수 스킬	Linked absorb skill	이 특성을 들면 기본 공격이 바뀌는 흡수 스킬 종류. 바꾸면 스킬 연결이 깨질 수 있어 시트에서는 보여 주지 않는다.	The absorb skill this trait grants. Not shown on the sheet — changing it can break the skill link.
+# ── 사운드 (SfxLibrary — Assets/Resources/Audio/SfxLibrary.asset, 2026-10-14). 줄 이름은 sfx.<id>, 설명 = 언제 나는 소리
+SfxLibrary.entries	효과음 항목	Sound entries	효과음 id별 클립·재생 조정값 목록. 항목·클립은 '사운드 가져오기'가 만든다.	Per-id clips and playback settings. Entries and clips are created by 'Import sounds'.
+SfxLibrary.Entry.id	id	Id	효과음 id(파일 이름에서 확장자를 뺀 것, 예: sfx_hit). 코드(SfxId)와 같아야 한다.	Sound id (file name without extension, e.g. sfx_hit). Must match the code (SfxId).
+SfxLibrary.Entry.clips	클립(변형)	Clips (variants)	연결된 클립(_1, _2…). 재생 때 무작위로 하나.	Linked clips (_1, _2…). One is picked at random.
+SfxLibrary.Entry.volume	볼륨 (0~1)	Volume (0–1)	이 소리의 기본 크기. 실제 = 이 값 × 옵션 효과음 볼륨(× 전체 볼륨). 올리면 커진다.	Base loudness. Actual = this × SFX volume option (× master). Higher = louder.
+SfxLibrary.Entry.pitchJitter	음높이 흔들림 (±)	Pitch jitter (±)	재생마다 음높이를 1 ± 이 값 안에서 무작위로 바꾼다. 자주 나는 소리가 덜 질린다. 0이면 항상 같음.	Each play randomizes pitch within 1 ± this. Keeps frequent sounds fresh. 0 = always the same.
+SfxLibrary.Entry.minInterval	최소 간격 (초)	Min interval (s)	같은 소리를 이 시간 안에 다시 재생하면 건너뛴다(여러 적이 동시에 맞을 때 과다 재생 방지).	Skips replaying the same sound within this time (avoids spam when many enemies are hit at once).
+SfxLibrary.Entry.maxConcurrent	최대 동시 수	Max concurrent	같은 소리가 동시에 날 수 있는 최대 개수. 넘으면 가장 오래된 것을 끊는다. 0 = 제한 없음.	Max copies of this sound playing at once; the oldest is cut beyond that. 0 = no limit.
+SfxLibrary.Entry.is2D	화면 전체	Whole screen (2D)	켜면 위치와 상관없이 화면 전체로 들린다(UI·보스·방/층 소리). 끄면 소리 난 위치에 따라 좌우·거리 감쇠.	On = heard across the screen regardless of position (UI, boss, room/floor). Off = panned and attenuated by position.
+SfxLibrary.Entry.source	출처	Source	클립을 어디서 가져왔는지(사용자 파일 / 합성본 / 없음). 가져오기가 기록한다.	Where the clips came from (user file / synth / missing). Recorded by import.
+enum.SfxLibrary.ClipSource.Missing	없음	Missing	연결된 클립이 없다 — 이 소리는 조용히 건너뛴다.	No clip linked — this sound is silently skipped.
+enum.SfxLibrary.ClipSource.Synth	합성본	Synth	Art_Source/sound/synth/의 합성 효과음(임시).	Synthesized placeholder from Art_Source/sound/synth/.
+enum.SfxLibrary.ClipSource.User	사용자	User	Art_Source/sound/에 사용자가 넣은 파일.	A file the user put in Art_Source/sound/.
+sfx.sfx_sword_swing	대검 휘두르기	Sword swing	기본 공격으로 대검을 휘두를 때(토끼 귀 채찍 포함).	When swinging the greatsword (basic attack, incl. Rabbit ear whip).
+sfx.sfx_hit	명중	Hit	플레이어 공격이 잡몹·보스에 직접 명중했을 때.	When a player attack directly hits a mob or boss.
+sfx.sfx_hit_strong	강타 명중	Strong hit	토끼 귀 채찍 끝부분 강타가 명중했을 때.	When the Rabbit ear whip tip lands a strong hit.
+sfx.sfx_guard	가드 막기	Guard block	대검 가드로 공격을 막아낸 순간.	The moment the greatsword guard blocks an attack.
+sfx.sfx_dash	대시	Dash	대시를 시작할 때.	When a dash starts.
+sfx.sfx_player_hurt	플레이어 피격	Player hurt	플레이어 체력이 줄었을 때.	When a player's health goes down.
+sfx.sfx_player_down	쓰러짐	Player down	멀티에서 체력 0으로 쓰러졌을 때.	When a player is downed at 0 health in co-op.
+sfx.sfx_revive_loop	부활 진행 (반복)	Reviving (loop)	쓰러진 팀원을 살리는 동안 계속(게이지가 찰 때).	Loops while a downed teammate is being revived.
+sfx.sfx_revive_done	부활 완료	Revive done	부활이 끝나 일어나는 순간.	The moment the revive completes.
+sfx.sfx_absorb_hold	흡수 홀드 (반복)	Absorb hold (loop)	흡수 키를 누르고 빨아들이는 동안 계속.	Loops while holding the absorb key.
+sfx.sfx_absorb_success	흡수 성공	Absorb success	흡수가 성사되는 순간("꿀꺽").	The moment an absorb succeeds ("gulp").
+sfx.sfx_trait_equip	탈 쓰기	Trait equip	동물 탈(특성)을 새로 얻거나 바꿔 쓸 때("퐁").	When gaining or swapping an animal mask (trait) ("pop").
+sfx.sfx_trait_lost	특성 잃음	Trait lost	맞아서 특성이 벗겨질 때.	When a hit knocks the trait off.
+sfx.sfx_debris_grab	파편 머금기	Debris grab	보스 파편을 머금는 순간.	The moment boss debris is grabbed.
+sfx.sfx_debris_spit	파편 뱉기	Debris spit	머금은 파편을 뱉을 때.	When spitting the held debris.
+sfx.sfx_elem_fire	화염 걸림	Fire applied	잡몹·보스에 화염이 새로 걸릴 때(스택이 쌓일 때는 안 남).	When fire is newly applied to a mob or boss (not on extra stacks).
+sfx.sfx_elem_ice	냉기 걸림	Ice applied	냉기가 새로 걸릴 때.	When ice is newly applied.
+sfx.sfx_elem_electric	전기 걸림	Electric applied	전기가 새로 걸리거나 마비(방전)가 걸릴 때.	When electric is newly applied or paralysis (discharge) triggers.
+sfx.sfx_elem_poison	독 걸림	Poison applied	독이 새로 걸릴 때.	When poison is newly applied.
+sfx.sfx_elem_earth	대지 걸림	Earth applied	대지 경직이 새로 걸릴 때.	When earth stagger is newly applied.
+sfx.sfx_monster_hurt	잡몹 피격	Mob hurt	잡몹이 직접 공격에 맞을 때(명중음과 겹침).	When a mob takes a direct hit (layered with the hit sound).
+sfx.sfx_monster_die	잡몹 사망	Mob death	잡몹·정예가 쓰러질 때.	When a mob or elite dies.
+sfx.sfx_monster_warn	공격 예고	Attack warning	잡몹 공격 예고가 시작될 때(개는 짖는 소리로 대신).	When a mob attack telegraph starts (Dog barks instead).
+sfx.sfx_dog_bark	개 짖기	Dog bark	개 잡몹의 돌진 예고가 시작될 때.	When the Dog mob's charge telegraph starts.
+sfx.sfx_dragon_breath	용 브레스	Dragon breath	용 잡몹이 브레스를 뿜는 순간(예고가 끝날 때).	When the Dragon mob breathes fire (end of telegraph).
+sfx.sfx_shield_block	방패 막힘	Shield block	돼지 잡몹이 정면 방패로 막을 때.	When the Pig mob blocks with its front shield.
+sfx.sfx_boss_roar	보스 포효	Boss roar	보스 방 문이 잠길 때(등장)와 포효 패턴 시작.	When the boss room locks (entrance) and when the roar pattern starts.
+sfx.sfx_boss_charge	보스 돌진	Boss charge	보스 돌진(강화 박치기·연속 돌진)이 출발할 때.	When a boss charge (power headbutt, chain charge) starts moving.
+sfx.sfx_boss_wall_hit	보스 벽 충돌	Boss wall hit	보스가 돌진하다 벽에 부딪혀 경직될 때.	When the charging boss hits a wall and is stunned.
+sfx.sfx_boss_slam	보스 강타	Boss slam	지진 강타·포효 대지분쇄 충격(화면 흔들림)과 함께.	With the quake slam / roar smash impact (camera shake).
+sfx.sfx_boss_phase	보스 페이즈	Boss phase	보스 페이즈가 바뀌어 문구가 뜰 때(폭주 포함).	When the boss changes phase and the banner shows (incl. enrage).
+sfx.sfx_boss_down	보스 쓰러짐	Boss down	보스가 쓰러지는 순간.	The moment the boss is defeated.
+sfx.sfx_door_lock	문 잠김	Door lock	전투 방에 들어가 문이 닫힐 때.	When entering a combat room and the doors close.
+sfx.sfx_room_clear	방 클리어	Room clear	방의 적을 다 잡아 문이 열릴 때.	When all enemies are cleared and the doors open.
+sfx.sfx_portal_open	포탈 열림	Portal open	내 화면에서 다음 층 포탈이 열릴 때.	When the next-floor portal opens on your screen.
+sfx.sfx_floor_enter	다음 층 이동	Floor enter	다음 층으로 넘어가 층 이름이 뜰 때(1층 시작은 제외).	When moving to the next floor and its title shows (not on floor 1).
+sfx.sfx_ui_hover	버튼 호버	Button hover	버튼에 마우스를 올릴 때.	When the mouse moves over a button.
+sfx.sfx_ui_click	버튼 클릭	Button click	버튼을 누를 때.	When a button is pressed.
+sfx.sfx_ui_open	창 열기·닫기	Window open/close	일시정지·옵션 창, 지도(Tab)를 열거나 닫을 때.	When opening or closing pause, options or the map (Tab).
+sfx.sfx_ui_select	속성 선택 확정	Element select	보스 속성 선택에서 속성을 고를 때.	When confirming an element in the boss element choice.

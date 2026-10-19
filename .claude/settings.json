@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__aseprite__run_lua_script",
+      "mcp__aseprite__start_preview_server"
+    ]
+  }
+}

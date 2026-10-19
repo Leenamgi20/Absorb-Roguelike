@@ -1,0 +1,17 @@
+{
+    "name": "Epic.OnlineServices",
+    "rootNamespace": "Epic.OnlineServices",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "WebGL",
+        "WindowsStandalone32"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
